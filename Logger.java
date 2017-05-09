@@ -1,4 +1,4 @@
-// author: Tim Guggenmos
+// author: Tim Guggenmos (hi)
 // date: 09.05.2017
 // ver 0.0.1
 
