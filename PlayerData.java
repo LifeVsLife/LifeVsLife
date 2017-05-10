@@ -6,7 +6,7 @@ import java.awt.Color; //Farben nach RGB für Spielerfarben
 public class PlayerData
 {
     private String name; //Name des Spielers
-    public Color color; //Spielerfarbe
+    private Color color; //Spielerfarbe
     
     /**
      * Konstruktor der Klasse PlayerData
