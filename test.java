@@ -15,6 +15,9 @@ public class test
     {
         /* initialise instance variables*/
         x = 0;
+        int x,y;
+        x=y=3;
+        System.out.println(y+x);
     }
 
     /**
