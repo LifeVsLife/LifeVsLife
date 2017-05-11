@@ -1,5 +1,5 @@
 
-public abstract class Cell
+public class Cell
 {
     int posX, posY;
     
@@ -8,6 +8,5 @@ public abstract class Cell
         this.posY = posY;
     }
     
-    abstract public boolean isAlive();
     
 }

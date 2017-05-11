@@ -2,13 +2,13 @@
 /**
  * 
  */
-public class LifeMap
+public class Map
 {
 
     /**
      * 
      */
-    public LifeMap()
+    public Map()
     {
     }
 }
