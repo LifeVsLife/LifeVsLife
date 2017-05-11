@@ -9,11 +9,15 @@ public class ServerThread extends Thread
 
     public void run()
     {
-        try {
+        //try {
             server = new ServerT();
-        } catch (java.io.IOException e) {
+        //} catch (java.io.IOException e) {
 
-        }
+        //}
+    }
+    
+    public void send() {
+        
     }
 
 }
