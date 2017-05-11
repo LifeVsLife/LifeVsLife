@@ -4,6 +4,9 @@ import java.net.*;
 public class ClientT
 {
     public final int port = 4445;
+    
+    ObjectInputStream inStream;
+    
     public ClientT() throws IOException, ClassNotFoundException
     {
         //try {            
@@ -14,7 +17,7 @@ public class ClientT
             System.out.println("outStream created");
             InputStream inp = client.getInputStream();
             System.out.println("inp recieve");
-            ObjectInputStream inStream = new ObjectInputStream(inp);
+            inStream = new ObjectInputStream(inp);
             System.out.println("inStream created");
             // Read modify
             // TODO here
@@ -27,13 +30,18 @@ public class ClientT
 
             /* Retrive the Message Object from server */
             PDummy gotIn = null;
-            gotIn = (PDummy) inStream.readObject();
+            String s;
+            s = (String) inStream.readObject();
 
 
             /* Print out the recived Message */
-            System.out.println("recieved Dummy-Name: " + gotIn.name);
+            System.out.println("recieved Dummy-Name: " + s);
 
 
 
+    }
+    
+    public void read() throws ClassNotFoundException, IOException {
+        System.out.println(inStream.readObject());
     }
 }
