@@ -10,8 +10,8 @@
 public class Logger
 {
     public static String[] types = {"DEBUG", "INFO", "WARNING", "ERROR", "n/a"};
-    public static boolean[] typeDisabled = {false, false, true, false, false};
-
+    public static boolean[] diabledTypes = {false, false, true, false, false};
+    public static String[] customDisabledTypes = {};
     public static boolean allowCustomTypes = true;
 
     public static void info(Class classN, String methodName, String desc) {
@@ -38,8 +38,9 @@ public class Logger
         log(className, methodName, desc, type);
     }
     
-    public static void log(String message) {
-        
+    public static void log(String desc) // log is of type "n/a"
+    {
+        System.out.println("[n/a] " + desc + ";");
     }
     
     private static void log(Class className, String methodName, String desc, int importance) {
@@ -75,15 +76,23 @@ public class Logger
     }
 
     public static boolean isTypeEnabled(String type) {
+        //check if it is one of the default types which is disabled/enabled
         for (int i = 0; i < types.length; i++) {
             if (types[i] == type) {
-                if (!typeDisabled[i]) {
+                if (!diabledTypes[i]) {
                     return true;
                 } else {
                     return false;
                 }
             }
         }
+        //check if it is a custom diabled type
+        for (int i = 0; i < customDisabledTypes.length; i++) {
+            if (customDisabledTypes[i] == type) {
+                return false;
+            }
+        }
+        //if it is not a default enabled type then it is a custom type, are they enabled?
         return allowCustomTypes;
     }
 }
