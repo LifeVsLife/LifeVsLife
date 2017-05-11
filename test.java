@@ -1,32 +1,28 @@
-
-/**
- * Write a description of class test here.
- * @author (your name) @version (a version number or a date)
- */
-public class test
+public class test<T>
 {
-    /* instance variables - replace the example below with your own*/
-    private int x;
+    public T[] array;
+    public test3<T> test;
 
     /**
      * Constructor for objects of class test
      */
+    public test(T x)
+    {
+        array = (T[]) new Object[1];
+        array[0] = x;
+        test = new test3<T>();
+        
+    }
+    
     public test()
     {
-        /* initialise instance variables*/
-        x = 0;
-        int x,y;
-        x=y=3;
-        System.out.println(y+x);
+        array = (T[]) new Object[1];
+        test = new test3();
+        
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * @param  y  a sample parameter for a method @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        /* put your code here*/
-        return x + y;
+    
+    public T get(int index) {
+        return array[index];
     }
+    
 }
