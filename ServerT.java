@@ -4,11 +4,11 @@ import java.net.*;
 public class ServerT
 {
     public final int port = 4445;
-    
+
     ServerSocket server;
     ObjectOutputStream outStream;
     ObjectOutputStream outStream2;
-    
+
     public ServerT() //throws IOException
     {
         try {
@@ -49,19 +49,22 @@ public class ServerT
             client.close();
             server.close();
              */
+
+            send();
         } catch (Exception e) {
             System.err.println("Client Error: " + e.getMessage());
             System.err.println("Localized: " + e.getLocalizedMessage());
             System.err.println("Stack Trace: " + e.getStackTrace());
         }
     }
-    
+
     public void accept() throws IOException {
         server.accept();
     }
 
     public void send()
     {
+        // while (true) {
         try {
             //outStream.writeObject(new PDummy("Timo"));
             //outStream2.writeObject(new PDummy("Timo2"));
@@ -70,6 +73,6 @@ public class ServerT
         } catch (IOException e) {
 
         }
-
+        //}
     }
 }

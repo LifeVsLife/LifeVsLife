@@ -1,9 +1,9 @@
 
-public class ThreadT extends Thread
+public class SimpleTestThread extends Thread
 {
     String s;
 
-    public ThreadT(String s) {
+    public SimpleTestThread(String s) {
         this.s = s;
         start();
     }
