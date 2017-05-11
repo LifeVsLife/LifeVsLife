@@ -1,3 +1,5 @@
+package net;
+
 public class Ver2
 {
     private static final Ver2 VER = new Ver2();

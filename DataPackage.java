@@ -5,7 +5,7 @@ public abstract class DataPackage
     
     public DataPackage()
     {
-        playerId = Client.player.id;
+        //playerId = Client.player.id;
     }
 
 }
