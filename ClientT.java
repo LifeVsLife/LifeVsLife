@@ -7,7 +7,7 @@ public class ClientT
     public ClientT() throws IOException, ClassNotFoundException
     {
         //try {            
-            Socket client = new Socket("localhost", port);
+            Socket client = new Socket("192.168.68.97", port);
             System.out.println("client created");
             // Create the input & output streams to the server
             ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
