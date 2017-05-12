@@ -1,4 +1,4 @@
-// author: Simone Stöckl
+// author: Simone Stöckl2
 // date: 08.05.2017
 // ver 0.0.1
 
