@@ -17,7 +17,11 @@ public class ServerThread extends Thread
     }
     
     public void send() {
-        
+        server.send();
+    }
+    
+    public void accept() throws java.io.IOException {
+        server.accept();
     }
 
 }

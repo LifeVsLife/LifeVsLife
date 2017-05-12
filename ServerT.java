@@ -17,7 +17,7 @@ public class ServerT
             server = new ServerSocket(port);
             System.out.println("server created");
 
-            Socket serverClient = server.accept();
+            Socket serverClient = server.accept(); //connected client
             Socket serverNew = new Socket("localhost", port);
             //System.out.println("client created");
 
@@ -28,24 +28,6 @@ public class ServerT
 
             /*InputStream inp = client.getInputStream();
             System.out.println("inp recieve");
-
-            ObjectInputStream inStream = new ObjectInputStream(inp);
-            System.out.println("inStream created");
-            // Read modify
-            // TODO here
-
-            // Create The Message Object to send 
-            PDummy toSend = new PDummy("Dumm");
-
-            // Send the Message Object to the server 
-            outStream.writeObject(toSend);
-
-            // Retrive the Message Object from server 
-            PDummy gotIn = null;
-            //gotIn = (PDummy) inStream.readObject();
-
-            // Print out the recived Message 
-            System.out.println("recieved Dummy-Name: " + gotIn);
 
             client.close();
             server.close();
@@ -60,7 +42,8 @@ public class ServerT
     }
 
     public void accept() throws IOException {
-        server.accept();
+        Socket serverClient = server.accept();
+        outStream2 = new ObjectOutputStream(serverClient.getOutputStream());
     }
 
     public void send()
