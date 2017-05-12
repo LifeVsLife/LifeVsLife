@@ -1,5 +1,5 @@
 /**
- * 
+ * 2
  */
 public class Map
 {
