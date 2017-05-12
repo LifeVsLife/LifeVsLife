@@ -5,13 +5,14 @@ import java.net.*;
 public class ClientT
 {
     public final int port = 4445;
+    public final String ip = "localhost"; //"192.168.68.97"
 
     ObjectInputStream inStream;
 
     public ClientT() throws IOException, ClassNotFoundException
     {
         //try {            
-        Socket client = new Socket("192.168.68.97", port);
+        Socket client = new Socket(ip, port);
         client.setSoTimeout(10);
         System.out.println("client created");
         // Create the input & output streams to the server
@@ -38,7 +39,7 @@ public class ClientT
         /* Print out the recived Message */
         System.out.println("recieved Dummy-Name: " + s);
 
-        read();
+        //read();
     }
 
     public void read() throws ClassNotFoundException, IOException {
