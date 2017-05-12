@@ -13,7 +13,7 @@ public class ClientT
     {
         //try {            
         Socket client = new Socket(ip, port);
-        client.setSoTimeout(10);
+        //client.setSoTimeout(10);
         System.out.println("client created");
         // Create the input & output streams to the server
         ObjectOutputStream outStream = new ObjectOutputStream(client.getOutputStream());
