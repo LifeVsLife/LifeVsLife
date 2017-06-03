@@ -24,7 +24,7 @@ public class Logger
     public static void error(Class classN, String methodName, String desc) {
         log(classN, methodName, desc, "ERROR");
     }
-    
+
     public static void debug(Class classN, String methodName, String desc) {
         log(classN, methodName, desc, "DEBUG");
     }
@@ -32,16 +32,16 @@ public class Logger
     public static void custom(Class classN, String methodName, String desc, String type) {
         log(classN, methodName, desc, type);
     }
-    
+
     public static void custom(String className, String methodName, String desc, String type) {
         log(className, methodName, desc, type);
     }
-    
+
     public static void log(String desc) // log is of type "n/a"
     {
         System.out.println("[n/a] " + desc + ";");
     }
-    
+
     private static void log(Class className, String methodName, String desc, int importance) {
         String type;
         if (importance == 0) {
@@ -69,7 +69,7 @@ public class Logger
                     methodString = "." + methodName;
                 }
             }
-            
+
             System.out.println("[" + type + "] " + className + methodString + ": " + desc + ";");
         }
     }
