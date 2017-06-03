@@ -1,4 +1,4 @@
-//C
+
 public class Cell
 {
     int posX, posY;
