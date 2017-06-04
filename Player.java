@@ -2,12 +2,14 @@
 //date: 08.05.2017
 //ver 0.0.1
 
+import java.io.Serializable;
 
 /**
- * 
+ *
  */
-public class Player
+public class Player implements Serializable
 {
+    private static final long serialVersionUID = 1284521045273L;
 
     public int id; //zur eindeutigen Identifizierbarkeit
     public PlayerData playerData;
@@ -22,7 +24,7 @@ public class Player
     }
 
     /**
-     * 
+     *
      */
     public Player(int id, PlayerData playerData)
     {
