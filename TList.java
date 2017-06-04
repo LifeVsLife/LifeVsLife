@@ -1,22 +1,24 @@
 /**
 *   List Implementation by Tim Guggenmos (C) 2017
-*   initially for LifeVsLife
 */
 
 public class TList <T> {
-    
-    private TElement<T> first;
+
+    protected TElement<T> first;
 
     public boolean blockSameObj = true;
     public boolean blockNull = true;
 
-    public TList()
-    {
+    public TList() {
         first = new TEnd<T>();
     }
 
-    public TList(T[] obj)
-    {
+    public TList(T obj) {
+        first = new TEnd<T>();
+        add(obj);
+    }
+
+    public TList(T[] obj) {
         first = new TEnd<T>();
         add(obj);
     }

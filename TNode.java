@@ -1,8 +1,8 @@
 
-public class TNode <T> extends TElement<T> {
+public class TNode <T> extends TElement <T> {
 
-    private TElement<T> next;
-    private T obj;
+    protected TElement<T> next;
+    protected T obj;
 
     public TNode(T obj, TElement<T> next)
     {
