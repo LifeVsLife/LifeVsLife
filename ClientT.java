@@ -4,12 +4,12 @@ import java.net.*;
 
 public class ClientT
 {
-    public final int port = 4445;
-    public final String ip = "localhost"; //"192.168.68.97"
+    public final int port = 4831;
+    public final String ip = "192.168.68.50";//"localhost"; //"192.168.68.97"
 
     ObjectInputStream inStream;
 
-    public ClientT() throws IOException, ClassNotFoundException
+    public ClientT(String s) throws IOException, ClassNotFoundException
     {
         //try {            
         Socket client = new Socket(ip, port);
@@ -33,8 +33,9 @@ public class ClientT
 
         /* Retrive the Message Object from server */
         PDummy gotIn = null;
-        String s;
-        s = (String) inStream.readObject();
+        //String s;
+        //s = (String) inStream.readObject();
+        outStream.writeObject(s);
 
         /* Print out the recived Message */
         System.out.println("recieved Dummy-Name: " + s);
