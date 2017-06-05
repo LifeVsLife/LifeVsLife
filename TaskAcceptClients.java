@@ -10,7 +10,7 @@ public class TaskAcceptClients extends Task {
         this.server = server;
     }
 
-    public void perform() throws IOException
+    public synchronized void perform() throws IOException
     {
         server.accept();
     }

@@ -9,32 +9,38 @@ public class TList <T> {
     public boolean blockSameObj = true;
     public boolean blockNull = true;
 
-    public TList() {
+    public TList()
+    {
         first = new TEnd<T>();
     }
 
-    public TList(T obj) {
-        first = new TEnd<T>();
-        add(obj);
-    }
-
-    public TList(T[] obj) {
+    public TList(T obj)
+    {
         first = new TEnd<T>();
         add(obj);
     }
 
-    public void _showList() {
+    public TList(T[] obj)
+    {
+        first = new TEnd<T>();
+        add(obj);
+    }
+
+    public void _showList()
+    {
         System.out.println("Print List (length = " + length() + "):");
         first._showList(0);
     }
 
     // count
-    public int length() {
+    public int length()
+    {
         return first.length();
     }
 
     // add obj in as first
-    public void add(T obj) {
+    public void add(T obj)
+    {
         if (!(obj == null && blockNull)) {
             if (!blockSameObj || getId(obj) < 0) {
                 first = new TNode<T>(obj, first);
@@ -47,26 +53,31 @@ public class TList <T> {
     }
 
     // add obj[] in as first - so that: obj[0] == list[0]
-    public void add(T[] obj) {
+    public void add(T[] obj)
+    {
         for (int i = obj.length - 1; i >= 0; i--) {
             add(obj[i]);
         }
     }
 
     // add obj in as last
-    public void addLast(T obj) {
+    public void addLast(T obj)
+    {
         insert(obj, length() - 1);
     }
 
     //add obj[] in as last - so that obj[0] == list[length()]
-    public void addLast(T[] obj) {
-        for (int i = 0; i < obj.length; i++) {
+    public void addLast(T[] obj)
+    {
+        for (int i = 0; i < obj.length; i++)
+        {
             insert(obj[i], length());
         }
     }
 
     // add obj at index
-    public void insert(T obj, int id) {
+    public void insert(T obj, int id)
+    {
         if (!(obj == null && blockNull)) {
             if (id >= 0) {
                 first = first.insert(obj, id, 0);
@@ -79,14 +90,17 @@ public class TList <T> {
     }
 
     // add obj[] at index - so that: obj[0] == list[id]
-    public void insert(T[] obj, int id) {
-        for (int i = 0; i < obj.length; i++) {
+    public void insert(T[] obj, int id)
+    {
+        for (int i = 0; i < obj.length; i++)
+        {
             insert(obj[i], id + i);
         }
     }
 
     // return obj at index
-    public T get(int id) {
+    public T get(int id)
+    {
         if (id >= 0) {
             return first.get(id, 0);
         } else {
@@ -95,13 +109,21 @@ public class TList <T> {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public T[] getArray()
+    {
+        return first.getArray((T[]) new Object[length()], 0);
+    }
+
     // return index of obj
-    public int getId(T obj) {
+    public int getId(T obj)
+    {
         return first.getId(obj, 0);
     }
 
     // remove obj at index
-    public void remove(int id) {
+    public void remove(int id)
+    {
         if (id >= 0) {
             first = first.remove(id, 0);
         } else {
@@ -110,12 +132,14 @@ public class TList <T> {
     }
 
     // remove obj
-    public void remove(T obj) {
+    public void remove(T obj)
+    {
         remove(getId(obj));
     }
 
     // remove and return obj at index
-    public T take(int id) {
+    public T take(int id)
+    {
         if (id >= 0) {
             T obj = get(id);
             remove(id);
@@ -126,8 +150,16 @@ public class TList <T> {
         }
     }
 
+    public T[] takeArray()
+    {
+        T[] array = getArray();
+        empty();
+        return array;
+    }
+
     // remove all from list
-    public void empty() {
+    public void empty()
+    {
         first = new TEnd<T>();
     }
 }

@@ -11,7 +11,7 @@ public class TServerSocket
     public final int port;
     private ServerSocket socket;
 
-    private float timeout = 0.002f;
+    private int timeout = 5; // in ms
 
     public TServerSocket(int port)
     {

@@ -56,6 +56,12 @@ public class TNode <T> extends TElement <T> {
         }
     }
 
+    public T[] getArray(T[] array, int thisId)
+    {
+        array[thisId] = obj;
+        return next.getArray(array, thisId + 1);
+    }
+
     public int getId(T obj, int thisId) {
         if (obj == this.obj) {
             return thisId;
