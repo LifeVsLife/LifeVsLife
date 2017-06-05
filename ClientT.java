@@ -29,7 +29,7 @@ public class ClientT
         //PDummy toSend = new PDummy("Dumm");
 
         /* Send the Message Object to the server */
-        //outStream.writeObject(toSend);            
+        //outStream.writeObject(toSend);
 
         /* Retrive the Message Object from server */
         PDummy gotIn = null;

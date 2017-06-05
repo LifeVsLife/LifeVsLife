@@ -12,17 +12,17 @@ public class test3<T>
         array = (T[]) new Object[1];
         array[0] = x;
         test = new test<T>();
-        
+
     }
-    
+
     public test3()
     {
         array = (T[]) new Object[1];
-        
+
     }
     
     public T get(int index) {
         return array[index];
     }
-    
+
 }

@@ -19,4 +19,8 @@ public class SimpleTestThread extends Thread
             }
         }
     }
+
+    public static void main(String[] args) {
+        SimpleTestThread s = new SimpleTestThread("tim");
+    }
 }
