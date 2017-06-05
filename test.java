@@ -8,6 +8,7 @@ import java.awt.FlowLayout;
 
 public class test
 {
+    public static int connections = 0;
 
     public static void main(String[] args)
     {
@@ -43,6 +44,27 @@ public class test
             }
         });
         frame.add(button2);
+
+        JButton button3 = new JButton("print");
+        button3.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                System.out.println("print-" + server.task.running);
+            }
+        });
+        frame.add(button3);
+
+        JLabel labelConnections = new JLabel(""+connections);
+        frame.add(labelConnections);
+
+        JButton button4 = new JButton("update");
+        button4.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e)
+            {
+                labelConnections.setText(""+connections);
+            }
+        });
+        frame.add(button4);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

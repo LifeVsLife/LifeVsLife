@@ -24,7 +24,7 @@ public class TServerSocket
 
     public synchronized void close() throws IOException
     {
-        SocketConnection[] clientSocketArray = clientSocketConnections.takeArray();
+        SocketConnection[] clientSocketArray = clientSocketConnections.takeArray(new SocketConnection[clientSocketConnections.length()]);
         for (int i = 0; i < clientSocketArray.length; i++)
         {
             clientSocketArray[i].in.close();
@@ -38,11 +38,15 @@ public class TServerSocket
         Socket newClientSocket;
         try {
             newClientSocket = serverSocket.accept();
+            newClientSocket.setSoTimeout(timeout);
+            clientSocketConnections.add(new SocketConnection(newClientSocket));
+            System.out.println("new connection");
+            test.connections++;
         } catch (Exception e) {
-            return;
+            //System.out.println("nah, no new connection");
+            //return;
         }
-        clientSocketConnections.add(new SocketConnection(newClientSocket));
-        System.out.println("new connection");
+
     }
 
 }

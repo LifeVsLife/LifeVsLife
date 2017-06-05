@@ -5,7 +5,7 @@ public class TServer {
 
     public TServerSocket serverSocket;
 
-    private TThread task;
+    public TThread task; //private
 
     public TServer(TServerSocket serverSocket)
     {
@@ -13,18 +13,17 @@ public class TServer {
         task = new TThread(new TaskServer(this));
     }
 
-    public void read() throws IOException, ClassNotFoundException
+    public synchronized void read() throws IOException, ClassNotFoundException
     {
-        SocketConnection[] sockets = (SocketConnection[]) serverSocket.clientSocketConnections.getArray();
-        for (int i = 0; i < sockets.length; i++)
+        int length = serverSocket.clientSocketConnections.length();
+        //System.out.println(length);
+        for (int i = 0; i < length; i++)
         {
-            Object o = sockets[i].in.readObject();
-            if (o != null) {
-                try {
-                    System.out.println((String) o);
-                } catch (Exception e) {
+            try {
+                Object o = serverSocket.clientSocketConnections.get(i).in.readObject();
+                System.out.println((String) o);
+            } catch (Exception e) {
 
-                }
             }
         }
     }

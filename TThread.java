@@ -1,7 +1,7 @@
 
 public class TThread extends Thread {
 
-    private boolean running = false;
+    public boolean running = false; //private
     private Task task;
 
     public TThread(Task task)
@@ -9,10 +9,11 @@ public class TThread extends Thread {
         this.task = task;
     }
 
-    public void run() // loop this
+    public void run() // loop here
     {
         while (running)
         {
+            //System.out.println("Running: " + running);
             try {
                 task.perform();
             } catch (Exception e) {

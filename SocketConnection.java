@@ -2,7 +2,8 @@
 import java.io.*;
 import java.net.*;
 
-public class SocketConnection {
+public class SocketConnection
+{
 
     public Socket socket;
     public ObjectInputStream in;
