@@ -1,10 +1,10 @@
 
 
-public class SimpleTestThread extends Thread
+public class YThreadExample extends Thread
 {
     String s;
 
-    public SimpleTestThread(String s) {
+    public YThreadExample(String s) {
         this.s = s;
         start();
     }
@@ -21,6 +21,6 @@ public class SimpleTestThread extends Thread
     }
 
     public static void main(String[] args) {
-        SimpleTestThread s = new SimpleTestThread("tim");
+        YThreadExample s = new YThreadExample("tim");
     }
 }

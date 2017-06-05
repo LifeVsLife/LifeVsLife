@@ -1,8 +1,8 @@
-public class ServerThread extends Thread
+public class ZServerThread extends Thread
 {
-    ServerT server;
+    ZServerT server;
 
-    public ServerThread() 
+    public ZServerThread() 
     {
         start();
     }
@@ -10,7 +10,7 @@ public class ServerThread extends Thread
     public void run()
     {
         //try {
-            server = new ServerT();
+            server = new ZServerT();
         //} catch (java.io.IOException e) {
 
         //}

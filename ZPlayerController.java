@@ -3,16 +3,16 @@
 // ver 0.0.1
 
 
-public class PlayerController
+public class ZPlayerController
 {
-    PlayerList playerList; // Spieler + Zuschauer
+    ZPlayerList playerList; // Spieler + Zuschauer
     int playersCount; // Anzahl der aktiven Spieler
     int playersId[]; // Speichert die Id jedes aktiven Spielers
     
     /**
      * Konstruktor
      */
-    public PlayerController(int playersCount){
+    public ZPlayerController(int playersCount){
         this.playersCount = playersCount;
         playersId = new int[playersCount];
     }

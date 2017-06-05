@@ -1,6 +1,6 @@
 
-public class TThread extends Thread {
-
+public class TThread extends Thread
+{
     public boolean running = false; //private
     private Task task;
 

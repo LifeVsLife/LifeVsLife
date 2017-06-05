@@ -2,14 +2,14 @@
 import java.io.*;
 import java.net.*;
 
-public class ClientT
+public class ZClientT
 {
     public final int port = 4831;
     public final String ip = "192.168.68.50";//"localhost"; //"192.168.68.97"
 
     ObjectInputStream inStream;
 
-    public ClientT(String s) throws IOException, ClassNotFoundException
+    public ZClientT(String s) throws IOException, ClassNotFoundException
     {
         //try {            
         Socket client = new Socket(ip, port);
@@ -32,7 +32,7 @@ public class ClientT
         //outStream.writeObject(toSend);
 
         /* Retrive the Message Object from server */
-        PDummy gotIn = null;
+        ZPDummy gotIn = null;
         //String s;
         //s = (String) inStream.readObject();
         outStream.writeObject(s);

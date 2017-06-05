@@ -2,7 +2,7 @@
 import java.io.*;
 import java.net.*;
 
-public class ServerT
+public class ZServerT
 {
     public final int port = 4445;
 
@@ -10,7 +10,7 @@ public class ServerT
     ObjectOutputStream outStream;
     ObjectOutputStream outStream2;
 
-    public ServerT() //throws IOException
+    public ZServerT() //throws IOException
     {
         try {
             // Create the socket

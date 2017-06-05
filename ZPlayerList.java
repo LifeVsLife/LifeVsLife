@@ -3,14 +3,14 @@
 // ver 0.0.1
 
 
-public class PlayerList //Liste
+public class ZPlayerList //Liste
 {
     //der merkt sich den Anfangsknoten
     
     /**
      * leerer Konstruktor
      */
-    public PlayerList(){
+    public ZPlayerList(){
     
     }
     

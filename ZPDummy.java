@@ -1,10 +1,10 @@
 import java.io.Serializable;
 
-public class PDummy implements Serializable
+public class ZPDummy implements Serializable
 {
     String name;
 
-    public PDummy(String name)
+    public ZPDummy(String name)
     {
         this.name = name;
     }
