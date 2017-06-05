@@ -27,17 +27,17 @@ public class TNode <T> extends TElement <T> {
     //     this.obj = obj;
     // }
 
-    // public T getObj() {
-    //     return obj;
-    // }
+    public T getObj() {
+        return obj;
+    }
 
     public int length() {
         return next.length() + 1;
     }
 
-    //public boolean end() {
-    //    return false;
-    //}
+    public boolean end() {
+        return false;
+    }
 
     public TElement<T> insert(T obj, int id, int thisId) {
         if (id == thisId) {

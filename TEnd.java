@@ -12,9 +12,9 @@ public class TEnd <T> extends TElement <T>
         return;
     }
 
-    //public boolean end() {
-    //    return true;
-    //}
+    public boolean end() {
+        return true;
+    }
 
     public TElement<T> insert(T obj, int id, int thisId)
     {

@@ -2,6 +2,8 @@
 *   List Implementation by Tim Guggenmos (C) 2017
 */
 
+import java.util.Iterator;
+
 public class TList <T> {
 
     protected TElement<T> first;
@@ -26,14 +28,15 @@ public class TList <T> {
         add(obj);
     }
 
+    //
+
     public void _showList()
     {
         System.out.println("Print List (length = " + length() + "):");
         first._showList(0);
     }
 
-    // count
-    public int length()
+    public int length() // == count
     {
         return first.length();
     }
@@ -109,16 +112,21 @@ public class TList <T> {
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public T[] getArray()
+    @Deprecated
+    public T[] getArray(T[] array) // feed this method with: new T[tlist.length()]
     {
-        return first.getArray((T[]) new Object[length()], 0);
+        return first.getArray(array, 0);
     }
 
     // return index of obj
     public int getId(T obj)
     {
         return first.getId(obj, 0);
+    }
+
+    public boolean contains(T obj)
+    {
+        return getId(obj) >= 0;
     }
 
     // remove obj at index
@@ -150,9 +158,10 @@ public class TList <T> {
         }
     }
 
-    public T[] takeArray()
+    @Deprecated
+    public T[] takeArray(T[] array) // feed this method with: new T[tlist.length()]
     {
-        T[] array = getArray();
+        array = getArray(array);
         empty();
         return array;
     }
@@ -162,4 +171,5 @@ public class TList <T> {
     {
         first = new TEnd<T>();
     }
+
 }

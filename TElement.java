@@ -5,7 +5,7 @@ abstract public class TElement <T> {
 
     abstract public int length();
 
-    //abstract public boolean end();
+    abstract public boolean end();
 
     abstract public TElement<T> insert(T obj, int id, int thisId);
 
