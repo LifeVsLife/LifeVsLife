@@ -4,12 +4,12 @@ import java.net.*;
 
 public class TServerSocket
 {
-    TList<Socket> sockets = new TList<Socket>();
+    TList<Socket> clientSockets = new TList<Socket>();
 
     private TThread accepter;
 
     public final int port;
-    private ServerSocket socket;
+    private ServerSocket serverSocket;
 
     private int timeout = 5; // in ms
 
@@ -21,18 +21,24 @@ public class TServerSocket
 
     public void open() throws IOException
     {
-        socket = new ServerSocket(port);
+        serverSocket = new ServerSocket(port);
     }
 
     public synchronized void close() throws IOException
     {
-
+        Socket[] clientSocketArray = clientSockets.takeArray();
+        for (int i = 0; i < clientSocketArray.length; i++)
+        {
+            clientSocketArray[i].getOutputStream().close();
+            clientSocketArray[i].getInputStream().close();
+        }
+        serverSocket.close();
     }
 
     public synchronized void accept() throws IOException
     {
-        Socket newConnection = socket.accept();
-        sockets.add(newConnection);
+        Socket newClientSocket = serverSocket.accept();
+        clientSockets.add(newClientSocket);
     }
 
     public synchronized void startAccepting()
