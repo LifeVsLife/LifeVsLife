@@ -2,9 +2,8 @@
 // imports for testbutton
 import javax.swing.*;
 import java.awt.event.*;
-// end: imports for testbutton
-
 import java.awt.FlowLayout;
+// end: imports for testbutton
 
 public class test
 {
