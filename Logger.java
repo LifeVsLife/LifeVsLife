@@ -6,7 +6,7 @@
 // Logger.error(this.getClass(), "methodName", "das ist die Problem-Beschreibung");
 // Logger.info(this.getClass(), "methodName", "das ist eine Information, nichts weltveränderndes");
 // Logger.warning(this.getClass(), "methodName", "das ist eine Warnung, nichts was einen Crash verursacht aber naja");
-public class Logger
+public class Logger //
 {
     public static String[] types = {"DEBUG", "INFO", "WARNING", "ERROR", "n/a"};
     public static boolean[] diabledTypes = {false, false, true, false, false};
