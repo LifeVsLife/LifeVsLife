@@ -1,10 +1,11 @@
 /**
-*   List Implementation by Tim Guggenmos (C) 2017
-*/
+ * List Implementation by Tim Guggenmos (C) 2017
+ * v.3
+ */
 
 import java.util.Iterator;
 
-public class TList <T> {
+public class TList <T> implements Iterable <T> {
 
     protected TElement<T> first;
 
@@ -170,6 +171,57 @@ public class TList <T> {
     public void empty()
     {
         first = new TEnd<T>();
+    }
+
+
+    // implements Iterable<T> for foreach capabilities
+
+    // for (T obj : list) {
+    //     //body of the loop
+    // }
+    // is the same as:
+    // for (Iterator<T> iter = list.iterator(); iter.hasNext(); ) {
+    //     T obj = iter.next();
+    //     //body of the loop
+    // }
+
+    /**
+     * = length() - just because of implements Iterable<T>
+     */
+    public int size()
+    {
+        return length();
+    }
+
+    //already defined
+    //public T get(int i) { /*... */ }
+
+    /**
+     * Returns a TListIterator<T>
+     */
+    public Iterator<T> iterator() {
+        return new TListIterator();
+    }
+
+    /**
+     * TListIterator has methods hasNext(), next() (and remove()) for foreach capabilities
+     */
+    class TListIterator implements Iterator<T> {
+
+        private int index = 0;
+
+        public boolean hasNext() {
+            return index < size();
+        }
+
+        public T next() {
+            return get(index++);
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException("not supported yet");
+
+        }
     }
 
 }

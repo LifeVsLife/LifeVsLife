@@ -6,13 +6,48 @@
 // Logger.error(this.getClass(), "methodName", "das ist die Problem-Beschreibung");
 // Logger.info(this.getClass(), "methodName", "das ist eine Information, nichts weltveränderndes");
 // Logger.warning(this.getClass(), "methodName", "das ist eine Warnung, nichts was einen Crash verursacht aber naja");
-@SuppressWarnings("rawtypes")
+@SuppressWarnings("rawtypes") //Class is a rawtype -> warning
 public class Logger
 {
+    public boolean logToConsole = true;
+    public boolean logToFile = false; // not implemented yet!
+
     public static String[] types = {"DEBUG", "INFO", "WARNING", "ERROR", "n/a"};
     public static boolean[] diabledTypes = {false, false, true, false, false};
+
     public static String[] customDisabledTypes = {};
     public static boolean allowCustomTypes = true;
+
+    private static int lengthLongestType = lengthLongestType();
+
+    // for testing
+    public static void main(String[] args)
+    {
+        _testLogger();
+    }
+
+    public static void _testLogger()
+    {
+        String className = "ClassName";
+        String methodName = "methodName";
+        String desc = "My short little description!";
+
+        for (String type : types) {
+            justLog(className, methodName, desc, type);
+        }
+
+    }
+
+    public static int lengthLongestType()
+    {
+        int length = 0;
+        for (String type : types) {
+            if (type.length() > length) {
+                length = type.length();
+            }
+        }
+        return length;
+    }
 
     public static void info(Class classN, String methodName, String desc) {
         log(classN, methodName, desc, "INFO");
@@ -64,15 +99,25 @@ public class Logger
 
     private static void log(String className, String methodName, String desc, String type) {
         if (isTypeEnabled(type)) {
-            String methodString = "";
-            if (methodName != null) {
-                if (methodName != "") {
-                    methodString = "." + methodName;
-                }
-            }
-
-            System.out.println("[" + type + "] " + className + methodString + ": " + desc + ";");
+            justLog(className, methodName, desc, type);
         }
+    }
+
+    private static void justLog(String className, String methodString, String desc, String type)
+    {
+        String shortTypeSpaces = "";
+        for (int i = 0; i < lengthLongestType - type.length(); i++)
+        {
+            shortTypeSpaces += " ";
+        }
+
+        if (methodString != null) {
+            if (methodString != "") {
+                methodString = "." + methodString;
+            }
+        }
+
+        System.out.println("[" + type + "] " + shortTypeSpaces + className + methodString + ": " + desc);
     }
 
     public static boolean isTypeEnabled(String type) {

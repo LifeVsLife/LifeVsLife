@@ -9,10 +9,10 @@ public class MapEvolutionRules
     // 3.  mehr als 3 nachbarn             => Tod
     // 4.  2 oder 3 nachbarn               => keine Veränderung  (UNNÖTIG)
     //
-    // 5. 3 gleichfarbige nachbarn         => Farbänderung  
-    // 
-   
-   
+    // 5. 3 gleichfarbige nachbarn         => Farbänderung
+    //
+
+
     public MapEvolutionRules()
     {
     }

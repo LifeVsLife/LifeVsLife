@@ -5,7 +5,7 @@ public class TServer {
 
     public TServerSocket serverSocket;
 
-    public TThread task; //private
+    private TThread task;
 
     public TServer(TServerSocket serverSocket)
     {
@@ -19,12 +19,8 @@ public class TServer {
         //System.out.println(length);
         for (int i = 0; i < length; i++)
         {
-            try {
-                Object o = serverSocket.clientSocketConnections.get(i).in.readObject();
-                System.out.println((String) o);
-            } catch (Exception e) {
-
-            }
+            Object o = serverSocket.clientSocketConnections.get(i).in.readObject();
+            System.out.println((String) o);
         }
     }
 

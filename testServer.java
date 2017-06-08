@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.awt.FlowLayout;
 // end: imports for testbutton
 
-public class test
+public class testServer
 {
     public static int connections = 0;
 
@@ -20,37 +20,37 @@ public class test
 
         JButton button1 = new JButton("Start TServerSocket on Port "+port);
         button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                try {
-                    server.serverSocket.open();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                try {
+                                        server.serverSocket.open();
+                                } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                }
+                        }
+                });
         frame.add(button1);
 
         JButton button2 = new JButton("Start task");
         button2.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                try {
-                    server.startTask();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                try {
+                                        server.startTask();
+                                } catch (Exception ex) {
+                                        ex.printStackTrace();
+                                }
+                        }
+                });
         frame.add(button2);
 
         JButton button3 = new JButton("print");
         button3.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                System.out.println("print-" + server.task.running);
-            }
-        });
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                //System.out.println("print-" + server.task.running);
+                        }
+                });
         frame.add(button3);
 
         JLabel labelConnections = new JLabel(""+connections);
@@ -58,11 +58,11 @@ public class test
 
         JButton button4 = new JButton("update");
         button4.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                labelConnections.setText(""+connections);
-            }
-        });
+                        public void actionPerformed(ActionEvent e)
+                        {
+                                labelConnections.setText(""+connections);
+                        }
+                });
         frame.add(button4);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

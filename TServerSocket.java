@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.net.*;
+//import TList.TList;
 
 public class TServerSocket
 {
@@ -16,6 +17,17 @@ public class TServerSocket
         this.port = port;
     }
 
+    public synchronized void setTimeout(int timeout)
+    {
+        this.timeout = timeout;
+        try {
+                serverSocket.setSoTimeout(timeout);
+        } catch (SocketException e) {
+
+        }
+
+    }
+
     public void open() throws IOException
     {
         serverSocket = new ServerSocket(port);
@@ -24,29 +36,21 @@ public class TServerSocket
 
     public synchronized void close() throws IOException
     {
-        SocketConnection[] clientSocketArray = clientSocketConnections.takeArray(new SocketConnection[clientSocketConnections.length()]);
-        for (int i = 0; i < clientSocketArray.length; i++)
+        for (SocketConnection connection : clientSocketConnections)
         {
-            clientSocketArray[i].in.close();
-            clientSocketArray[i].out.close();
+                connection.in.close();
+                connection.out.close();
         }
         serverSocket.close();
     }
 
     public synchronized void accept() throws IOException
     {
-        Socket newClientSocket;
-        try {
-            newClientSocket = serverSocket.accept();
-            newClientSocket.setSoTimeout(timeout);
-            clientSocketConnections.add(new SocketConnection(newClientSocket));
-            System.out.println("new connection");
-            test.connections++;
-        } catch (Exception e) {
-            //System.out.println("nah, no new connection");
-            //return;
-        }
-
+        Socket newClientSocket = serverSocket.accept();
+        newClientSocket.setSoTimeout(timeout);
+        clientSocketConnections.add(new SocketConnection(newClientSocket));
+        System.out.println("new connection");
+        testServer.connections++; // debug
     }
 
 }
