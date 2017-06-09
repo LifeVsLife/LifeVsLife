@@ -1,6 +1,6 @@
 // author: Tim Guggenmos
 // date: 09.05.2017
-// ver: 0.0.1
+// ver: 0.1.0
 
 //used like this:
 // Logger.error(this.getClass(), "methodName", "das ist die Problem-Beschreibung");
