@@ -1,1 +1,1 @@
-Main-Class: testServer
+Main-Class: TestClassTaskPrint

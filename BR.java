@@ -5,7 +5,7 @@
 //ver: 0.0.1
 
 import java.io.*;
-public class BR 
+public class BR
 {
 
     String path;
@@ -16,7 +16,7 @@ public class BR
 
     public void writer(String text)
     {
-        File file = new File(path);   
+        File file = new File(path);
         try {
             FileWriter writer = new FileWriter(file, false); //false überschreibt true addiert
             writer.write(text);
@@ -25,20 +25,20 @@ public class BR
         } catch (IOException ex) {
 
             System.out.println(this.getClass().getName());
-        } 
+        }
     }
 
     public String reader()
     {
         try {
 
-            FileReader file = new FileReader(path);                        
+            FileReader file = new FileReader(path);
             BufferedReader br = new BufferedReader(file);
 
             String line = null;
             StringBuilder stringBuilder = new StringBuilder();
             String ls = System.getProperty("line.separator");
-            
+
             while((line = br.readLine()) != null)
             {
                 stringBuilder.append(line);
