@@ -1,6 +1,6 @@
 
 .DS_Store
-
+*.class
 TestClass*.java
 *.ctxt
 *.sh
