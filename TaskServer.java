@@ -9,7 +9,7 @@ public class TaskServer implements Task {
     /**
      * The TServer which has tasks
      */
-    TServer server;
+    private TServer server;
 
     /**
      * TaskServer creation with a TServer
@@ -27,7 +27,7 @@ public class TaskServer implements Task {
         server.serverSocket.accept();
         try {
             server.read(); // not final
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
 
         }
         //server.write();

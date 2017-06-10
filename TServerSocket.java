@@ -46,11 +46,15 @@ public class TServerSocket
 
     public synchronized void accept() throws IOException
     {
-        Socket newClientSocket = serverSocket.accept();
-        newClientSocket.setSoTimeout(timeout);
-        clientSocketConnections.add(new SocketConnection(newClientSocket));
-        System.out.println("new connection");
-        testServer.connections++; // debug
+        try {
+            Socket newClientSocket = serverSocket.accept();
+            newClientSocket.setSoTimeout(timeout);
+            clientSocketConnections.add(new SocketConnection(newClientSocket));
+            System.out.println("new connection");
+            testServer.connections++; // debug
+        } catch (IOException e) {
+            
+        }
     }
 
 }
