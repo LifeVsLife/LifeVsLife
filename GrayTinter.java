@@ -11,6 +11,63 @@ import java.awt.GraphicsEnvironment;
 
 public abstract class GrayTinter {
 
+    public static BufferedImage tintTim(BufferedImage img, Color color, float alpha)
+    {
+        int width = img.getWidth();
+        int height = img.getHeight();
+
+        int constant = 150;
+
+        BufferedImage newImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                int rgb = img.getRGB(x,y);
+                int r = (rgb >> 16) & 0xFF;
+                int g = (rgb >> 8) & 0xFF;
+                int b = rgb & 0xFF;
+
+                float rA = r/255f + constant;
+                float gA = g/255f + constant;
+                float bA = b/255f + constant;
+
+                rgb = color.getRGB();
+                int br = (rgb >> 16) & 0xFF;
+                int bg = (rgb >> 8) & 0xFF;
+                int bb = rgb & 0xFF;
+
+                r = 255 - r;
+                g = 255 - g;
+                b = 255 - b;
+
+                int nr = br - r + constant;
+                int ng = bg - g + constant;
+                int nb = bb - b + constant;
+
+                if (nr < 0) {
+                    nr = 0;
+                }
+                if (ng < 0) {
+                    ng = 0;
+                }
+                if (nb < 0) {
+                    nb = 0;
+                }
+
+                System.out.println(nr+" "+ng+" "+nb);
+
+                Color c = new Color(nr, ng, nb);
+
+                newImg.setRGB(x, y, c.getRGB());
+            }
+        }
+
+        return newImg;
+
+    }
+
     public static BufferedImage tint(BufferedImage img, Color color, float alpha)
     {
         return tint(img, generateMask(img, color, alpha));

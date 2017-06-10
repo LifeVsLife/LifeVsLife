@@ -4,3 +4,4 @@
 TestClass*.java
 *.ctxt
 *.sh
+*_back*

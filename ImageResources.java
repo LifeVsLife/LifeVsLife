@@ -22,9 +22,10 @@ public class ImageResources {
         BufferedImage[] tintedImg = new BufferedImage[PlayerColor.ARRAY.length];
         for (int i = 0; i < tintedImg.length; i++)
         {
-            tintedImg[i] = GrayTinter.tint(img, PlayerColor.ARRAY[i], 0.7f);
+            tintedImg[i] = GrayTinter.tintTim(img, PlayerColor.ARRAY[i], 0.65f);
         }
         ShowImage i = new ShowImage(tintedImg);
+        ShowImage i2 = new ShowImage(ImageLoader.load("cells/dead/dead0.png"));
     }
 
     public static void loadImages(BufferedImage[] img, String path, String fileName)
