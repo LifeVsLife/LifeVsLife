@@ -3,48 +3,68 @@ import java.awt.image.*;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.net.URL;
+import java.net.MalformedURLException;
 
 public class Resources {
 
-    public URL resPath = this.getClass().getResource("res/");
+    public static URL resPath = new Root().getClass().getResource("res/");
 
-    public ImageResources images;
+    public static ImageResources images = new ImageResources();
 
     public Resources()
     {
-        images = new ImageResources();
+        //System.out.println("RES-PATH: "+resPath);
     }
+
 
     public static boolean checkURL(URL url) {
-        return new File(url.toString()).exists();
+        return new File(url.getPath()).exists();
     }
 
-    public URL getResourceURL(URL url)
+    public static URL getResourceURL(URL url)
     {
         return getResourceURL(url.toString());
     }
 
-    public URL getResourceURL(String url)
+    public static URL getResourceURL(String url)
     {
-        URL resURL = URLAppender.append(resPath, url);
-        if (checkURL(resURL)) {
-            return resURL;
-        } else {
-            return null;
+        try {
+            URL resURL = URLAppender.append(resPath, url);
+            if (checkURL(resURL)) {
+                return resURL;
+            }
+
+        } catch (MalformedURLException e) {
+
+            //Logger.warning("Resources", "getResourceURL", "URL cannot be appended!"); //no 'this.'
+
         }
+        return null;
     }
 
-
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
-        File file = new File("/res/");
-        System.out.println(file.getPath());
-        //BufferedImage image = ImageIO.read(file);
+        //new Resources();
+        //System.out.println(new Root().getClass().getResource("res/cells/base/"));
+        //System.out.println(new Root().getClass().getResource("res/cells/base/").toString());
+        URL resour = getResourceURL("cells/base/base0.png");
+        System.out.println(resour);
+        System.out.println("check self: "+ checkURL(resour));
 
-        Resources r = new Resources();
-        System.out.println(r.resPath);
-        System.out.println(r.getResourceURL("cells/cell.png"));
-        //System.out.println(new File(r.getResourceURL("cells/cell3.png").toString()).exists());
+
+        System.out.println("---------");
+
+
+        URL r = new Root().getClass().getResource("");
+        System.out.println("r = "+r);
+
+        File f = new File(r.getPath());
+        System.out.println("f = "+f);
+
+        boolean e = f.exists(); // f.getAbsoluteFile() ?
+        System.out.println("e = "+e);
+
+
 
     }
 

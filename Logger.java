@@ -13,7 +13,7 @@ public class Logger
     public boolean logToFile = false; // not implemented yet!
 
     public static String[] types = {"DEBUG", "INFO", "WARNING", "ERROR", "n/a"};
-    public static boolean[] diabledTypes = {false, false, true, false, false};
+    public static boolean[] diabledTypes = {false, false, false, false, false};
 
     public static String[] customDisabledTypes = {};
     public static boolean allowCustomTypes = true;
