@@ -1,4 +1,6 @@
 
+import res.Resources;
+
 public class Main {
 
     public static Resources res;
@@ -29,7 +31,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        new Main();
+        Main m = new Main();
     }
 
 }
