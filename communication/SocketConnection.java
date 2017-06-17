@@ -18,4 +18,15 @@ public class SocketConnection
         out = new ObjectOutputStream(socket.getOutputStream());
     }
 
+    public void close()
+    {
+        try {
+            in.close();
+            out.close();
+            socket.close();
+        } catch (IOException e) {
+
+        }
+    }
+
 }

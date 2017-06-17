@@ -11,21 +11,21 @@ public class TServer {
 
     public TServerSocket serverSocket;
 
-    private TThread task;
+    private TThread serverTask;
 
     public TServer(TServerSocket serverSocket)
     {
         this.serverSocket = serverSocket;
-        task = new TThread(new TaskServer(this));
+        serverTask = new TThread(new TaskServer(this));
     }
 
     public synchronized void read() throws IOException, ClassNotFoundException
     {
-        int length = serverSocket.clientSocketConnections.length();
+        int length = serverSocket.socketConnections.length();
         //System.out.println(length);
         for (int i = 0; i < length; i++)
         {
-            Object o = serverSocket.clientSocketConnections.get(i).in.readObject();
+            Object o = serverSocket.socketConnections.get(i).in.readObject();
             System.out.println((String) o);
         }
     }
@@ -37,12 +37,12 @@ public class TServer {
 
     public synchronized void startTask()
     {
-        task.startThread();
+        serverTask.startThread();
     }
 
     public synchronized void stopTask()
     {
-        task.stopThread();
+        serverTask.stopThread();
     }
 
 }
