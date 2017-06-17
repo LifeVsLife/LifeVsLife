@@ -39,11 +39,11 @@ public class TThread extends Thread
         while (running)
         {
             //System.out.println("Running: " + running);
-            try {
+            //try {
                 task.perform();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            //} catch (Exception e) {
+            //    e.printStackTrace();
+            //}
         }
     }
 

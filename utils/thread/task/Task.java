@@ -9,6 +9,6 @@ public interface Task {
     /**
      * perform() gets called iterably by the TThread
      */
-    abstract public void perform() throws Exception;
+    abstract public void perform();
 
 }

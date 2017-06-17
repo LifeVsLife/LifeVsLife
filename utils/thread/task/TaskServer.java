@@ -25,10 +25,11 @@ public class TaskServer implements Task {
     /**
      * The tasks themselves
      */
-    public synchronized void perform() throws IOException
+    @Override
+    public synchronized void perform()
     {
-        server.serverSocket.accept();
         try {
+            server.serverSocket.accept();
             server.read(); // not final
         } catch (IOException | ClassNotFoundException e) {
 
