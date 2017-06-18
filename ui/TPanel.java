@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class TPanel extends JPanel {
 
+    @Override
     public void repaint()
     {
         super.repaint();
