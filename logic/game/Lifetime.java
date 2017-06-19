@@ -1,3 +1,6 @@
+
+package logic.game;
+
 /**
  * gibt alles zum Thema Zeit an
  */
