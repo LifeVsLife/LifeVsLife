@@ -7,14 +7,14 @@ package logic.game;
 public class Lifetime
 {
     int birthRound;
+    //Speichert die Runde, in der die Zelle erstellt ("geboren") wurde.
     long birthGameSecond;
+    //Speichert die Spielsekunde, in der die Zelle erstellt wurde.
+   
     public Lifetime(int birthRound)
     {
-        for(int i = 0;i < Integer.MAX_VALUE; i++)
-        {
-          birthRound = i;
-        }
-        birthGameSecond = System.nanoTime();
+       this.birthRound = birthRound;
+        birthGameSecond = Time.time();
     }
 
     public int getRoundAge()
