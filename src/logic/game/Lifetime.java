@@ -21,12 +21,12 @@ public class Lifetime
     {
         return birthRound;
     }
-    
+
     public float getBirthGameSecond()
     {
         return birthGameSecond / 10^9;
     }
-    
+
     /**
      * gibt die Lebensdauer einer Cell an
      */
@@ -35,6 +35,6 @@ public class Lifetime
         long end = System.nanoTime();
         return (end - birthGameSecond)/10^9;
     }
-    
+
 
 }
