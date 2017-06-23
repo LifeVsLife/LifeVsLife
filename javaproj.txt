@@ -3,8 +3,7 @@ BIN=$(pwd)/bin/
 DOC=$(pwd)/doc/
 RES=$(pwd)/res/
 LIB=$(pwd)/lib/
-JAR=$(pwd)/jars/
+JAR=$(pwd)/jar/
 CP=$(pwd)/.classpath
 CPSH=$(pwd)/.classpath_sh
 PROJ=$(pwd)
-

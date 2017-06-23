@@ -3,3 +3,4 @@
 TestClass*.java
 *.ctxt
 *_back*
+_*
