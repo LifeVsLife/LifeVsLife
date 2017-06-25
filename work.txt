@@ -1,0 +1,2 @@
+2 threads:  0 renders
+            1 recives data and works logic
