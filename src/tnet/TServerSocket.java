@@ -1,10 +1,12 @@
 
 package tnet;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
-import tlist.TList;
+import tlist.TListKey;
 
 /**
  * Has a ServerSocket and manages the connections
@@ -12,168 +14,135 @@ import tlist.TList;
 public class TServerSocket
 {
     /**
-     * A {@link tlist.TList} for managing all connections
-     */
-    public TList<SocketConnection> socketConnections = new TList<SocketConnection>();
-
-    /**
-     * The port the serverSocket is going to connect to when {@link #open()} is run
-     */
-    private int port;
-
-    /**
-     * The ServerSocket it uses
+     * The ServerSocket of this TServerSocket
      */
     private ServerSocket serverSocket;
 
-    private int selfTimeout = 5; // in ms
-    private int conTimeout = 5; // in ms
+    /**
+     * The list which stores all the TSockets that connect to this TServerSocket
+     */
+    public TListKey<TSocketCom, String> clientConnections = new TListKey<TSocketCom, String>();
 
-    public TServerSocket(int port)
+    /**
+     * The port the ServerSocket is going to {@link #open()} to
+     */
+    private int port = 4831;
+
+    private int timeout = 5; // in ms
+
+    /**
+     * Saves the port and runs {@link #open()}
+     *
+     * @param int port The port the {@link #socket} is going to connect to when {@link #open()} is called
+     * @throws IOException if e.g. port is already used
+     */
+    public TServerSocket(int port) throws IOException
     {
         this.port = port;
-    }
-
-    public String getServerIp()
-    {
-        try {
-            return InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            return null;
-        }
+        open();
     }
 
     /**
-     * Returns the port the {@link #serverSocket} uses
-     *
-     * @return The port
+     * @return The port {@link #socket} is connecting to
      */
     public int getPort()
     {
         return serverSocket.getLocalPort();
     }
+
     /**
-     * Sets the timeout for the {@link #serverSocket} and all streams in {@link #socketConnections}
+     * Sets the timeout of the socket
      *
-     * @param int timeout The new Timeout
+     * @param int timeout The new timeout in ms
      */
     public void setSoTimeout(int timeout)
     {
-        setSocketSoTimeout(timeout);
-        setConnectionsSoTimeout(timeout);
-    }
-
-    /**
-     * Sets the timeout for the {@link #serverSocket}
-     *
-     * @param int timeout The new Timeout
-     */
-    public void setSocketSoTimeout(int timeout)
-    {
-        this.selfTimeout = timeout;
-
-        if (serverSocket != null) {
-            try {
-                serverSocket.setSoTimeout(timeout);
-            } catch (SocketException e) {
-                e.printStackTrace();
-            }
+        try {
+            serverSocket.setSoTimeout(timeout);
+        } catch (SocketException e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * Sets the timeout for all streams in {@link #socketConnections}
-     *
-     * @param int timeout The new Timeout
-     */
-    public void setConnectionsSoTimeout(int timeout)
-    {
-        this.conTimeout = timeout;
-
-        for (SocketConnection c : socketConnections)
-        {
-            try {
-                c.socket.setSoTimeout(timeout);
-            } catch (SocketException e) {
-                e.printStackTrace();
-            }
-        }
-
-    }
-
-    /**
-     * Creates the {@link #serverSocket} with the IP and port
+     * Creates the {@link #serverSocket} with the port
      *
      * @throws IOException if e.g. the port is already used
      */
-    public void open() throws IOException
+    private void open() throws IOException
     {
         if (serverSocket == null) {
             serverSocket = new ServerSocket(port);
-            serverSocket.setSoTimeout(selfTimeout);
+            setSoTimeout(timeout);
         } else {
-            System.out.println("[TServerSocket] open(): Socket was already open. Did nothing.");
+            System.out.println("[TClientSocket] open(): Socket was already open. Did nothing.");
         }
     }
 
     /**
-     * Accepts 1 new socket connection, gets the streams, sets timeout and adds it to {@link #socketConnections}
+     * Accepts one socket's connection request and adds it to {@link #clientConnections}
      *
-     * @throws IOException
+     * @throws IOException if an I/O error occurs
      */
-    public void accept() throws IOException
+    public boolean accept() throws IOException
     {
-        //System.out.println("Trying to accept...");
-        Socket newClientSocket = serverSocket.accept();
-        //System.out.println("Creating SocketConnection");
-        SocketConnection connection = new SocketConnection(newClientSocket);
-        //System.out.println("Setting timeout");
-        newClientSocket.setSoTimeout(conTimeout);
-        //System.out.println("Adding to TList");
-        socketConnections.add(connection);
-
-        System.out.println("[TServerSocket] accept(): new connection");
+        try {
+            TSocketCom newClient = new TSocketCom(serverSocket.accept());
+            clientConnections.add(newClient);
+            return true;
+        } catch (SocketTimeoutException e) {
+            return false;
+        }
     }
 
     /**
-     * Accepts all Socket Requests
+     * Accepts all socket's connection requests and adds them all to {@link #clientConnections}
      *
-     * @throws IOException When an error occurs while accepting
+     * @throws IOException if an I/O error occurs
      */
     public void acceptAll() throws IOException
     {
-        try {
-            while (true)
-            {
-                accept();
-            }
-        } catch (SocketTimeoutException e) {
-            // no connection wants to connect anymore
-            //e.printStackTrace();
+        while (accept()) {
+            //
         }
     }
 
     /**
-     * Closes all Streams and Sockets
+     * Closes the socket
      *
-     * @throws IOException If error occurs
+     * @throws IOException If an error occurs
      */
     public void close() throws IOException
     {
-        for (SocketConnection connection : socketConnections)
-        {
-                connection.close();
-        }
-        serverSocket.close();
+        serverSocket.close(); //also closes socket
     }
 
-    public static void main(String[] args) throws Exception
+    /**
+     * Removes a SocketStream with a certain IP
+     *
+     * @param String ip Closes the socket and streams of this specific IP
+     * @throws IOException if an I/O error occurs
+     */
+    public void close(String ip) throws IOException
     {
-        TServerSocket t = new TServerSocket(57273);
-        t.open();
-        Thread.sleep(1000);
-        System.out.println(t.serverSocket.getInetAddress().getHostAddress());
+        TSocket socket = clientConnections.takeKey(ip);
+        if (socket != null)
+        {
+            socket.close();
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        try {
+            TServerSocket s = new TServerSocket(4831);
+            while (!s.accept()) {
+
+            }
+            s.clientConnections.get(0).write("abc");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

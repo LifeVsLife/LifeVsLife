@@ -1,82 +1,86 @@
 
 package tnet;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 
 import tlist.TListKeyObject;
 
 /**
  * A TSocket is able to connect to a ServerSocket and exchange data
  */
-public class TSocket<T> implements TListKeyObject<String>
+public class TSocket implements TListKeyObject<String>
 {
     /**
-     * The socket of this client
+     * The Socket of this TSocket
      */
     private Socket socket;
 
     /**
-     * The client and its streams saved in a SocketConnection
+     * The Socket and its streams saved in a SocketConnection
      */
-    public SocketConnection clientConnection;
+    protected SocketStreams clientConnection;
 
+    /**
+     * The IP the ServerSocket is going to {@link #open()} to
+     */
     private String ip = "192.168.68.50";
+
+    /**
+     * The port the ServerSocket is going to {@link #open()} to
+     */
     private int port = 4831;
+
+    private int timeout = 5; // in ms
 
     /**
      * A new TSocket with a preexisting Socket
      *
      * @param Socket socket The socket
      */
-    public TSocket(Socket socket)
+    public TSocket(Socket socket) throws IOException
     {
         this.socket = socket;
+        clientConnection = new SocketStreams(socket);
+        setSoTimeout(timeout);
     }
 
     /**
-     * Saves the ip and port
+     * Saves the ip and port and runs {@link #open()}
      *
      * @param String ip The IP the {@link #socket} is going to connect to when {@link #open()} is called
      * @param int port The port the {@link #socket} is going to connect to when {@link #open()} is called
+     * @throws IOException if e.g. port is already used
      */
-    public TSocket(String ip, int port)
+    public TSocket(String ip, int port) throws IOException
     {
         this.ip = ip;
         this.port = port;
+        open();
     }
 
     /**
-     * Saves the ip and port
+     * Saves the ip and port and runs {@link #open()}
      *
      * @param String address The IP and port from String-Format "192.165.78.34:23422"
+     * @throws IOException if e.g. port is already used
      */
-    public TSocket(String address)
+    public TSocket(String address) throws IOException
     {
         int colon = address.indexOf(":");
         this.ip = address.substring(0, colon);
         this.port = Integer.parseInt(address.substring(colon+1));
+        open();
     }
 
     /**
      * @return The IP {@link #socket} is connecting to
      */
-    public String getServerIp()
+    public String getConnectionIp()
     {
         return socket.getInetAddress().getHostAddress();
-    }
-
-    /**
-     * @return The Ip of this machine
-     */
-    public String getLocalIp()
-    {
-        try {
-            return InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 
     /**
@@ -102,15 +106,16 @@ public class TSocket<T> implements TListKeyObject<String>
     }
 
     /**
-     * Creates the {@link #serverSocket} with the IP and port
+     * Creates the {@link #socket} with the IP and port
      *
      * @throws IOException if e.g. the port is already used
      */
-    public void open() throws IOException
+    private void open() throws IOException
     {
         if (socket == null) {
             socket = new Socket(ip, port);
-            clientConnection = new SocketConnection(socket);
+            clientConnection = new SocketStreams(socket);
+            socket.setSoTimeout(timeout);
         } else {
             System.out.println("[TClientSocket] open(): Socket was already open. Did nothing.");
         }
@@ -123,49 +128,12 @@ public class TSocket<T> implements TListKeyObject<String>
      */
     public void close() throws IOException
     {
-        clientConnection.close();
-    }
-
-    /**
-     * Send an object of type T with {@link SocketConnection#out}
-     *
-     * @param T obj The object to be sent
-     */
-    public void send(T obj)
-    {
-        try {
-            System.out.println("Trying to send: '"+obj+"'...");
-            clientConnection.out.writeObject(obj);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Reads an incoming Object, returns null when no object is able to be read
-     *
-     * @return The object, null if no object
-     * @throws IOException If error while reading object
-     */
-    @SuppressWarnings("unchecked")
-    public T read() throws IOException
-    {
-        T obj = null;
-        try {
-            System.out.println("Trying to read...");
-            obj = (T) clientConnection.in.readObject();
-            System.out.println("Read: '"+obj+"'");
-        } catch (SocketTimeoutException e) {
-            // no date recieved - return null
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return obj;
+        clientConnection.close(); //also closes socket
     }
 
     public String key()
     {
-        return getLocalIp();
+        return getConnectionIp();
     }
 
 }

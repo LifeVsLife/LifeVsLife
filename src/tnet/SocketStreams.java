@@ -1,13 +1,17 @@
 
 package tnet;
 
-import java.io.*;
-import java.net.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
  * A Class to save a socket with its ObjectStreams
  */
-public class SocketConnection
+public class SocketStreams
 {
     /**
      * The socket itself
@@ -30,10 +34,10 @@ public class SocketConnection
      * @param Socket the new Socket
      * @throws IOException is thrown when an error happens while getting and creating the streams
      */
-    public SocketConnection(Socket socket) throws IOException
+    public SocketStreams(Socket socket) throws IOException
     {
         this.socket = socket;
-        out = new ObjectOutputStream(socket.getOutputStream()); // out always before in - otherwise: stuck
+        out = new ObjectOutputStream(socket.getOutputStream()); //out always before in - otherwise gets stuck while creating ObjectInputStream
         in = new ObjectInputStream(socket.getInputStream());
     }
 
