@@ -20,6 +20,7 @@ public class PaintPanel extends TPanel {
     int ys = 0;
     int ms = 0;
     int lastms;
+    int it = 0;
 
     //upd1
 
@@ -50,6 +51,9 @@ public class PaintPanel extends TPanel {
         //System.out.println("upd");
         long n = System.nanoTime();
 
+        repaint();
+        it++;
+
         if (n - last >= 1000) {
             last += 1000;
             //time++;
@@ -66,12 +70,14 @@ public class PaintPanel extends TPanel {
         if (ms % 10 == 0 && ms != lastms && ms != 0) {
             lastms = ms;
             x++;
-            repaint();
+
         }
 
         if (ms >= 1000) {
             ms -= 1000;
             time++;
+            System.out.println(it);
+            it = 0;
             //repaint();
 
             //System.out.println(x);

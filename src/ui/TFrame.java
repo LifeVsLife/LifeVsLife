@@ -50,13 +50,7 @@ public class TFrame extends JFrame {
         PaintPanel p = new PaintPanel();
         //TPanel p = new TPanel();
 
-        p.last = System.nanoTime();
-        /*while (true)
-        {
-            //System.out.println("try repaint");
-            p.upd();
-        }*/
-        p.s=0;
+
         // button for tests
 
         JButton button1 = new JButton("1");
@@ -73,7 +67,7 @@ public class TFrame extends JFrame {
         t.add(p);
         t.pack();
 
-        t.add(button1);
+        //t.add(button1);
 
 
         //t.add(p);
@@ -81,7 +75,13 @@ public class TFrame extends JFrame {
 
         t.resize(500,500);
 
-
+        p.last = System.nanoTime();
+        while (true)
+        {
+            //System.out.println("try repaint");
+            p.upd();
+        }
+        //p.s=0;
 
 
         // end: button for tests

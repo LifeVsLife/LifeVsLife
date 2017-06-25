@@ -1,6 +1,8 @@
 
 package resources;
 
+import main.Main;
+
 import java.io.InputStream;
 import utils.URLAppender;
 
@@ -12,16 +14,22 @@ public class Resources {
 
     public Resources()
     {
-        System.out.println("RES-PATH: "+resPath);
+        //System.out.println("RES-PATH: "+resPath);
         images = new ImageResources();
     }
 
     public static boolean checkPath(String path) {
-        return false;//Main.class.getResourceAsStream(path) != null;
+        return getResourceAsStream(path) != null;
     }
 
     public static InputStream getResourceAsStream(String path) {
-        return Resources.class.getResourceAsStream(resPath + path);
+        String newPath;
+        if (Main.isJar) {
+            newPath = "/" + path;
+        } else {
+            newPath = resPath + path;
+        }
+        return Resources.class.getResourceAsStream(newPath);
         //return null;
     }
 

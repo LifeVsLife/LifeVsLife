@@ -2,11 +2,12 @@
 package utils.thread.task;
 
 import java.io.IOException;
-import communication.TServer;
+import tnet.TServer;
 
 /**
  * The TaskServer class performs the tasks of a TServer
  */
+@Deprecated
 public class TaskServer implements Task {
 
     /**

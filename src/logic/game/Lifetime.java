@@ -10,11 +10,11 @@ public class Lifetime
     //Speichert die Runde, in der die Zelle erstellt ("geboren") wurde.
     long birthGameSecond;
     //Speichert die Spielsekunde, in der die Zelle erstellt wurde.
-   
+
     public Lifetime(int birthRound)
     {
-       this.birthRound = birthRound;
-        birthGameSecond = Time.time();
+        this.birthRound = birthRound;
+        //birthGameSecond = Time.time();
     }
 
     public int getRoundAge()

@@ -8,6 +8,8 @@ import java.net.URLClassLoader;
 
 public class Main {
 
+    public static boolean isJar;
+
     public static Resources res;
 
     /**
@@ -15,6 +17,9 @@ public class Main {
      */
     public Main()
     {
+        isJar = Main.class.getResourceAsStream("../../res/") == null;
+        System.out.println(isJar);
+
         stage1();
 
         stage2();
@@ -24,24 +29,19 @@ public class Main {
 
     public void stage1()
     {
-
+        /*
         System.out.println(ClassLoader.class.getResourceAsStream("../res/"));
-
         //Get the System Classloader
         ClassLoader sysClassLoader = ClassLoader.getSystemClassLoader();
-
         //Get the URLs
         URL[] urls = ((URLClassLoader)sysClassLoader).getURLs();
-
         for(int i=0; i< urls.length; i++)
         {
             System.out.println(urls[i].getFile());
-        }
-
+        }*/
         System.out.println(getClass().getClassLoader().getResourceAsStream("../res/"));
-        System.out.println(Main.class.getClassLoader().getClass().getResourceAsStream("../res/"));
-        System.out.println(Main.class.getResource("../res/"));
-
+        System.out.println(Main.class.getClassLoader().getResourceAsStream("../../res/"));
+        System.out.println(Main.class.getResourceAsStream("../res/"));
 
         res = new Resources();
     }

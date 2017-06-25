@@ -18,6 +18,7 @@ public abstract class ImageLoader {
     public static BufferedImage loadImage(String path)
     {
         try {
+            //return ImageIO.read(ImageLoader.class.getClassLoader().getResourceAsStream("pics/cells/cell_proto.png"));
             return ImageIO.read(Resources.getResourceAsStream(path)); // pics/cells/...
         } catch (IOException e) {
             return null;
