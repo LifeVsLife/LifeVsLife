@@ -20,7 +20,6 @@ public class clientTest
         this.port = port;
     }
 
-<<<<<<< HEAD
     public clientTest(String address)
     {
         int colon = address.indexOf(":");
@@ -32,11 +31,6 @@ public class clientTest
     public String getServerIp()
     {
         return socket.getLocalAddress().getHostAddress();
-=======
-    public clientTest()
-    {
-
->>>>>>> ca4fb6382f53b6675928e6daebbd6e4a6be47ac3
     }
 
     public void send(String s)
@@ -72,10 +66,7 @@ public class clientTest
             System.out.println("Creating out...");
             out = new ObjectOutputStream(socket.getOutputStream());
             System.out.println("Done: open()");
-<<<<<<< HEAD
             System.out.println("IP: "+ getServerIp());
-=======
->>>>>>> ca4fb6382f53b6675928e6daebbd6e4a6be47ac3
         } catch (IOException e) {
             e.printStackTrace();
         }
