@@ -52,9 +52,10 @@ public class TClientSocket extends TSocketCom
     public static void main(String[] args)
     {
         try {
-            TClientSocket t = new TClientSocket("localhost", 4831);
-            String s = t.<String>read();
-            System.out.println(s);
+            TClientSocket t1 = new TClientSocket("localhost", 4831);
+            //TClientSocket t2 = new TClientSocket("localhost", 4831);
+            String s1 = t1.<String>read();
+            System.out.println(s1);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ public class TServerSocket
     /**
      * The list which stores all the TSockets that connect to this TServerSocket
      */
-    public TListKey<TSocketCom, String> clientConnections = new TListKey<TSocketCom, String>();
+    public TListKey<SocketStreams, String> clientConnections = new TListKey<SocketStreams, String>();
 
     /**
      * The port the ServerSocket is going to {@link #open()} to
@@ -84,14 +84,14 @@ public class TServerSocket
      *
      * @throws IOException if an I/O error occurs
      */
-    public boolean accept() throws IOException
+    public String accept() throws IOException
     {
         try {
-            TSocketCom newClient = new TSocketCom(serverSocket.accept());
+            SocketStreams newClient = new SocketStreams(serverSocket.accept());
             clientConnections.add(newClient);
-            return true;
+            return newClient.getConnectionIp();
         } catch (SocketTimeoutException e) {
-            return false;
+            return null;
         }
     }
 
@@ -100,9 +100,10 @@ public class TServerSocket
      *
      * @throws IOException if an I/O error occurs
      */
+    @Deprecated
     public void acceptAll() throws IOException
     {
-        while (accept()) {
+        while (accept() != null) {
             //
         }
     }
@@ -125,23 +126,10 @@ public class TServerSocket
      */
     public void close(String ip) throws IOException
     {
-        TSocket socket = clientConnections.takeKey(ip);
-        if (socket != null)
+        SocketStreams socketStreams = clientConnections.takeKey(ip);
+        if (socketStreams != null)
         {
-            socket.close();
-        }
-    }
-
-    public static void main(String[] args)
-    {
-        try {
-            TServerSocket s = new TServerSocket(4831);
-            while (!s.accept()) {
-
-            }
-            s.clientConnections.get(0).write("abc");
-        } catch (Exception e) {
-            e.printStackTrace();
+            socketStreams.close();
         }
     }
 

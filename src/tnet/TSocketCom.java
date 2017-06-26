@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.Socket;
 
-public class TSocketCom extends TSocket implements TCommunicator
+public class TSocketCom extends TSocket
 {
     /**
      * A new TSocket with a preexisting Socket
@@ -18,7 +18,7 @@ public class TSocketCom extends TSocket implements TCommunicator
     }
 
     /**
-     * [TSocketCom description]
+     * A new TSocket to connect to this IP and port and runs {@link #open()}
      *
      * @param String ip The IP the {@link #socket} is going to connect to when {@link #open()} is called
      * @param int port The port the {@link #socket} is going to connect to when {@link #open()} is called
