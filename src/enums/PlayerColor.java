@@ -3,6 +3,9 @@ package enums;
 
 import java.awt.Color;
 
+/**
+ * Festlegung von Spielerfarben
+ */
 public abstract class PlayerColor {
 
     public static final Color GREEN = new Color(60, 242, 20);
