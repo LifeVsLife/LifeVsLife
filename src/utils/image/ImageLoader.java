@@ -11,10 +11,19 @@ import java.io.InputStream;
 import resources.ResRoot;
 import resources.Resources;
 
+/**
+ * Bildlader (ist zum Laden von Bildern zuständig)
+ */
 public abstract class ImageLoader {
 
+    /**
+     * Festlegung der maximalen Anzahl an Bildladungen 
+     */
     private static final int maxTries = 20;
 
+    /**
+     * 
+     */
     public static BufferedImage loadImage(String path)
     {
         try {
@@ -25,6 +34,9 @@ public abstract class ImageLoader {
         }
     }
 
+    /**
+     * 
+     */
     public static BufferedImage[] loadImageSet(String path, String file, String type)
     {
         InputStream[] stream = new InputStream[maxTries];
