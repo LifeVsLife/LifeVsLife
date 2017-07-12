@@ -1,9 +1,8 @@
-
-package logic.game;
-
 //auhor: Thomas Plank
 //date: 08.05.17
 //version: 0.0.3
+
+package logic.game;
 
 /**
  * speichern der Cells
@@ -14,13 +13,13 @@ public class Map
 {
     private int x;
     private int y;
-    private Cell[][] cell;
+    private Cell[][] cells;
 
     public Map(int x, int y)
     {
         this.x = x;
         this.y = y;
-        Cell cell[][] = new Cell[x][y];
+        Cell cells[][] = new Cell[x][y];
     }
 
     public int getX()
@@ -33,6 +32,11 @@ public class Map
         return y;
     }
 
+    public void setCell(int x, int y, Cell cell)
+    {
+        cells[x][y] = cell;
+    }
+
     public Cell getCell(int x, int y)
     {
         if (checkBounds(x,y))
@@ -42,7 +46,7 @@ public class Map
         }
         else
         {
-            return cell[x][y];
+            return cells[x][y];
         }
     }
 

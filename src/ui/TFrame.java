@@ -57,10 +57,10 @@ public class TFrame extends JFrame {
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e)
             {
-                p.s++;
-                if (p.s == 5) {
-                    p.s = 0;
-                }
+                //p.s++;
+                //if (p.s == 5) {
+                //    p.s = 0;
+                //}
             }
         });
         t.setVisible(true);

@@ -39,11 +39,11 @@ public class ShowImage {
         init(img);
     }
 
-    public void init(BufferedImage[] img)
+    public void init(final BufferedImage[] img)
     {
         TFrame frame = new TFrame("show image");
 
-        int f = 6;
+        final int f = 6;
 
         int width = 0;
         int height = 0;

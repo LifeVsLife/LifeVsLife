@@ -1,9 +1,8 @@
-
-package logic.game;
-
 //auhor: Thomas Plank
 //date: 08.05.17
 //version: 0.0.3
+
+package logic.game;
 
 /**
  * Verwaltet die Map bzw. fügt Map mehr Funktionalität hinzu
@@ -13,7 +12,7 @@ public class MapController
     /**
      * Die Regeln nach denen die Map eine Evolution ausführt
      */
-    private MapEvolutionRules rules;
+    //private MapEvolutionRules rules;
 
     /**
      * Die Map
@@ -29,9 +28,14 @@ public class MapController
         this.map = map;
     }
 
-   /**
-    * Gibt ein Feld mit den umliegenden Cells (Cell[])
-    */
+    public void setCell(int x, int y, Cell cell)
+    {
+        map.setCell(x, y, cell);
+    }
+
+    /**
+     * Gibt ein Feld mit den umliegenden Cells (Cell[])
+     */
     public Cell[] getSurroundingCells(int x, int y)
     {
         Cell[] cells = new Cell[8];
@@ -52,9 +56,10 @@ public class MapController
         return cells;
 
     }
-   /**
-    * Gibt die Anzahl aller lebenden Cells um die gewählte Cell an (int)
-    */
+
+    /**
+     * Gibt die Anzahl aller lebenden Cells um die gewählte Cell an (int)
+     */
     public int getLivingCellsAround(int x, int y)
     {
         Cell[] cells = getSurroundingCells(x, y);
@@ -66,15 +71,19 @@ public class MapController
             {
                 alive++;
             }
-
         }
         return alive;
-
     }
-   /**
-    * Gibt die lebenden Cells aller Spieler um eine Cell an (int[])
-    * Format: array[playerId] = Anzahl dessen lebenden Cells in der Umgebung
-    */
+
+    public int getDeadCellsAround(int x, int y)
+    {
+        return 8 - getLivingCellsAround(x, y);
+    }
+
+    /**
+     * Gibt die lebenden Cells aller Spieler um eine Cell an (int[])
+     * Format: array[playerId] = Anzahl dessen lebenden Cells in der Umgebung
+     */
     public int[] getPlayerAliveCellsAround(int x, int y)
     {
         int playercount = 4; //fertig machen
@@ -92,6 +101,5 @@ public class MapController
 
         return surroundingPlayer;
     }
-
 
 }
