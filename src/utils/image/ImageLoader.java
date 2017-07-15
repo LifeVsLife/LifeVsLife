@@ -14,28 +14,29 @@ import resources.Resources;
 /**
  * Bildlader (ist zum Laden von Bildern zuständig)
  */
-public abstract class ImageLoader {
+public abstract class ImageLoader
+{
 
     /**
-     * Festlegung der maximalen Anzahl an Bildladungen 
+     * Festlegung der maximalen Anzahl an Bildladungen
      */
     private static final int maxTries = 20;
 
     /**
-     * 
+     *
      */
     public static BufferedImage loadImage(String path)
     {
         try {
-            //return ImageIO.read(ImageLoader.class.getClassLoader().getResourceAsStream("pics/cells/cell_proto.png"));
-            return ImageIO.read(Resources.getResourceAsStream(path)); // pics/cells/...
-        } catch (IOException e) {
+            return ImageIO.read(Resources.getResourceAsStream(path));
+        }
+        catch (IllegalArgumentException | IOException e) {
             return null;
         }
     }
 
     /**
-     * 
+     *
      */
     public static BufferedImage[] loadImageSet(String path, String file, String type)
     {
@@ -57,7 +58,8 @@ public abstract class ImageLoader {
                 img[i] = ImageIO.read(stream[i]);
                 //System.out.println("read");
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             //Logger.warning("ImageResources", "loadImageSet", "loading " + path + file);
         }
         return img;

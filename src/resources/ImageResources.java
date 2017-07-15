@@ -4,16 +4,10 @@ package resources;
 import enums.PlayerColor;
 
 import java.awt.image.BufferedImage;
-import java.net.URL;
 
+import utils.image.GrayTinter;
 import utils.image.ImageLoader;
 import utils.image.ShowImage;
-import utils.image.GrayTinter;
-import java.io.File;
-import java.io.InputStream;
-import javax.imageio.ImageIO;
-import utils.Logger;
-import java.io.IOException;
 
 public class ImageResources {
 
@@ -27,12 +21,12 @@ public class ImageResources {
 
     public ImageResources()
     {
-        cells = ImageLoader.loadImageSet("pics/cells/", "base", type);
+        //cells = ImageLoader.loadImageSet("images/cells/", "base", type);
 
         BufferedImage[] colored = new BufferedImage[PlayerColor.ARRAY.length];
         for (int i = 0; i < colored.length; i++)
         {
-            colored[i] = GrayTinter.tint(ImageLoader.loadImage("pics/cells/cell_proto.png"), PlayerColor.ARRAY[i], 0.8f);
+            colored[i] = GrayTinter.tint(ImageLoader.loadImage("images/cells/cell_proto.png"), PlayerColor.ARRAY[i], 0.8f);
         }
         ShowImage s = new ShowImage(colored);
         //System.out.println(cells.length);

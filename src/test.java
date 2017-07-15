@@ -80,6 +80,39 @@ public class test
         // end: button for tests
     }*/
 
+    public void print(int... i)
+    {
+        for (int l : i)
+        {
+            System.out.print(l+" ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args)
+    {
+        test t = new test();
+        t.print(); // kein for loop
+        t.print(1);
+        t.print(1,4,27,32);
+        t.print(new int[]{1,2,3,13,1523});
+    }
+
+}
+
+class Person
+{
+    String name;
+
+    public Person(String name)
+    {
+        this.name = name;
+    }
+
+    public String toString()
+    {
+        return name;
+    }
 }
 
 interface Lol {

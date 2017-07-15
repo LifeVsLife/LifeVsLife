@@ -12,14 +12,7 @@ import java.net.URL;
 
 public class ShowImage {
 
-    public ShowImage(String path)
-    {
-        BufferedImage img = ImageLoader.loadImage(path);
-        init(new BufferedImage[]{img});
-
-    }
-
-    public ShowImage(String[] path)
+    public ShowImage(String... path)
     {
         BufferedImage[] img = new BufferedImage[path.length];
         for (int i = 0; i < path.length; i++)
@@ -29,17 +22,12 @@ public class ShowImage {
         init(img);
     }
 
-    public ShowImage(BufferedImage img)
-    {
-        init(new BufferedImage[]{img});
-    }
-
-    public ShowImage(BufferedImage[] img)
+    public ShowImage(BufferedImage... img)
     {
         init(img);
     }
 
-    public void init(final BufferedImage[] img)
+    private void init(final BufferedImage[] img)
     {
         TFrame frame = new TFrame("show image");
 
@@ -58,12 +46,12 @@ public class ShowImage {
         }
 
         @SuppressWarnings("serial")
-        PaintPanel panel = new PaintPanel() {
+        TPanel panel = new TPanel() {
 
             public void paintComponent(Graphics g)
             {
                 int x = 0;
-                super.paintComponent(g);
+                //super.paintComponent(g);
                 //g.drawRect(0,0,128,128);
 
                 for (BufferedImage i : img)

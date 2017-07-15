@@ -38,9 +38,9 @@ public class PaintPanel extends TPanel {
         init();
     }
 
-    public void init()
+    private void init()
     {
-        img = ImageLoader.loadImageSet("pics/ui/", "num", "png");
+        img = ImageLoader.loadImageSet("images/ui/", "num", "png");
         //dt = System.nanoTime()/1000;
         last = System.currentTimeMillis();
         //createBufferStrategy(2);

@@ -28,7 +28,7 @@ public class TFrame extends JFrame {
         init();
     }
 
-    public void init()
+    private void init()
     {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -41,7 +41,19 @@ public class TFrame extends JFrame {
         pack();
     }
 
+
+
     public static void main(String[] args)
+    {
+        TFrame t = new TFrame();
+        TPanel l = new LPanel();
+        l.setPreferredSize(new Dimension(100,100));
+        t.setContentPane(l);
+        t.pack();
+        t.setVisible(true);
+    }
+
+    public static void main2(String[] args)
     {
         TFrame t = new TFrame();
         //t.createBufferStrategy(2);
