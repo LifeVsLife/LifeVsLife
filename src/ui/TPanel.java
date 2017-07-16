@@ -5,8 +5,15 @@ import javax.swing.JPanel;
 
 import java.awt.Graphics;
 
+import java.awt.Color;
+
 @SuppressWarnings("serial")
 public class TPanel extends JPanel {
+
+    public TPanel()
+    {
+        super();
+    }
 
     @Override
     public void repaint()
@@ -26,6 +33,7 @@ public class TPanel extends JPanel {
     public void paint(Graphics g)
     {
         super.paint(g);
+        //System.out.println(getHeight());
         System.out.println("paint");
     }
 

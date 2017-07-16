@@ -9,6 +9,7 @@ import utils.thread.task.Task;
 
 /**
  * A TThread with a task to do iterably while it's running
+ * use startThread() and stopThread()
  */
 
 public class TThread extends Thread
@@ -24,6 +25,14 @@ public class TThread extends Thread
     private Task task;
 
     /**
+     * TThread creation
+     */
+    public TThread()
+    {
+
+    }
+
+    /**
      * TThread creation with a Task
      */
     public TThread(Task task)
@@ -31,9 +40,15 @@ public class TThread extends Thread
         this.task = task;
     }
 
+    public void setTask(Task task)
+    {
+        this.task = task;
+    }
+
     /**
      * The run method gets called iterably, it calls the perform() of its task
      */
+    @Override
     public void run() // loop here
     {
         while (running)
@@ -52,8 +67,14 @@ public class TThread extends Thread
      */
     public synchronized void startThread()
     {
-        running = true;
-        super.start();
+        if (task != null)
+        {
+            running = true;
+            super.start();
+        } else {
+            System.out.println("[TTherad] Task == null when starting!");
+        }
+
     }
 
     /**

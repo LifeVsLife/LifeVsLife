@@ -4,7 +4,7 @@ package main;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-import logic.MasterLogic;
+import main.master.Master;
 
 import resources.Resources;
 
@@ -13,28 +13,29 @@ public class Main
 
     public static Resources res;
 
-    public MasterLogic ml;
+    public static Master master;
 
     /**
      * CONST
      */
     public Main()
     {
-        startup();
+        init();
 
         stage2();
 
         stage3();
     }
 
-    public void startup()
+    public void init()
     {
         res = new Resources();
+        master = new Master();
     }
 
     public void stage2()
     {
-        ml = new MasterLogic();
+
     }
 
     public void stage3()

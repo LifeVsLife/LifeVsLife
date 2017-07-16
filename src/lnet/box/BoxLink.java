@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 
 import java.io.IOException;
 
-public class BoxLinker
+public class BoxLink
 {
 
     private PipedOutputStream o;
@@ -19,7 +19,7 @@ public class BoxLinker
     private ObjectInputStream b;
 
 
-    public BoxLinker()
+    public BoxLink()
     {
         try {
             o = new PipedOutputStream();
@@ -59,7 +59,7 @@ public class BoxLinker
 
     public static void main(String[] args)
     {
-        BoxLinker l = new BoxLinker();
+        BoxLink l = new BoxLink();
 
         OutBox o = l.getOutBox();
         InBox i = l.getInBox();
