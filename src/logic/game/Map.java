@@ -4,12 +4,15 @@
 
 package logic.game;
 
+import java.io.Serializable;
+
 /**
  * speichern der Cells
  *
  */
 
-public class Map
+@SuppressWarnings("serial")
+public class Map implements Serializable
 {
     private int x;
     private int y;

@@ -18,9 +18,23 @@ public class test
 
     }
 
-    private void factor(int f)
+    private void pr(String... s)
     {
-        x *= f;
+        for (String st : s)
+        {
+            System.out.print(st+", ");
+        }
+        System.out.println();
+    }
+
+
+    public static void main(String[] args)
+    {
+        test t = new test();
+        t.pr("Hallo");
+        t.pr("Hallo","Name","PC");
+        t.pr(new String[]{"JASHD","NamASDAe","PCASDA"});
+
     }
 
     /*public static void main(String[] args)
@@ -89,7 +103,7 @@ public class test
         System.out.println();
     }
 
-    public static void main(String[] args)
+    public static void main2(String[] args)
     {
         test t = new test();
         t.print(); // kein for loop

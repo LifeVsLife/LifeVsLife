@@ -14,7 +14,8 @@ import java.awt.FlowLayout;
 // end: imports for testbutton
 
 @SuppressWarnings("serial")
-public class TFrame extends JFrame {
+public class TFrame extends JFrame
+{
 
     public TFrame()
     {

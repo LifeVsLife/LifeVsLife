@@ -3,8 +3,6 @@ package utils.thread;
 
 import utils.thread.task.Task;
 
-import main.master.task.ComReadTask; // TODO cleanup
-
 import tlist.TList;
 
 // author: Tim Guggenmos
@@ -86,13 +84,6 @@ public class TThread extends Thread
         try {
             while (running)
             {
-                //System.out.println(getName()+": running = "+running);
-                if (getName() == "ReadThread") {
-                    //System.out.println("readThread");
-                }
-                if (!isAlive()) {
-                    System.out.println("[TThread] isAlive() -> FALSE"); // TODO cleanup
-                }
                 for (Task task : tasks)
                 {
                     //System.out.println(task);
