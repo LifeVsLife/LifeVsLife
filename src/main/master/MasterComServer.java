@@ -1,11 +1,17 @@
 
 package main.master;
 
-import tnet.TServer;
-
-import main.master.task.ComTask;
-
 import java.io.IOException;
+
+import main.master.task.ComReadTask;
+import main.master.task.ComWriteTask;
+import main.master.task.AcceptTask;
+
+import utils.thread.TThread;
+
+import tnet.communication.TNetData;
+
+import tnet.TServer;
 
 public class MasterComServer extends MasterCom
 {
@@ -13,17 +19,23 @@ public class MasterComServer extends MasterCom
     /**
      * The Server for the connection
      */
-    public TServer server;
+    protected TServer server;
+
+    protected TThread acceptThread;
+
+    protected AcceptTask acceptTask;
+
 
     public MasterComServer()
     {
-        super();
         server = new TServer();
-        comTask = new ComTask(
-            (lnet.Com) server.getCom(),
-            recieve.getOutBox(),
-            send.getInBox()
-        );
+        init(server.getCom());
+
+        acceptTask = new AcceptTask(server);
+
+        acceptThread = new TThread("AcceptThread");
+
+        acceptThread.addTask(acceptTask);
     }
 
     public void open(int port)
@@ -38,8 +50,15 @@ public class MasterComServer extends MasterCom
         }
     }
 
+    public void start()
+    {
+        super.start();
+        acceptThread.startThread();
+    }
+
     public void close()
     {
+        super.stop();
         server.close();
     }
 
@@ -47,6 +66,40 @@ public class MasterComServer extends MasterCom
     public void finalize()
     {
         close();
+    }
+
+    public static void main(String[] args) //throws Exception
+    {
+        MasterComServer s = new MasterComServer();
+        s.open(8345);
+        s.start();
+
+        //System.out.println("gonna send");
+        s.getOutBox().write("My name is Tim");
+        //System.out.println("read == " + s.recieve.getInBox().<String>read());
+        //System.out.println("send");
+
+
+        // try {
+        //     Thread.sleep(500);
+        // }
+        // catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
+
+        // System.out.println("lol");
+        // //System.out.println(s.thread.getTasks().length());
+        //
+        // int i = 0;
+        // while (i < 999999) {
+        //     i++;
+        // }
+        // System.out.println("end");
+        while (true) {
+            //System.out.println(s.readThread.isAlive());
+            //System.out.println(s.getInBox().<TNetData<String>>read().getData());
+        }
+        //s.thread.stopThread();
     }
 
 }

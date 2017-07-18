@@ -16,6 +16,4 @@ public class Master
         view = new MasterView();
     }
 
-    //public void changeTo
-
 }

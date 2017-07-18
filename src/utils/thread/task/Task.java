@@ -2,13 +2,26 @@
 package utils.thread.task;
 
 /**
- * The Task interface represents a class that can be attatched as what A TThread runs
+ * A Task represents a class that can be attatched as what A TThread runs
  */
-public interface Task {
+public abstract class Task
+{
+
+    protected boolean enabled = true;
 
     /**
      * perform() gets called iterably by the TThread
      */
-    abstract public void perform();
+    public abstract void perform();
+
+    public void setEnabled(boolean enabled)
+    {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled()
+    {
+        return enabled;
+    }
 
 }

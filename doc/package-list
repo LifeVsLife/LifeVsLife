@@ -1,9 +1,11 @@
 enums
+lnet.box
 logic.data
 logic.game
 main
+main.master
+main.master.task
 resources
-tnet
 ui
 ui.listeners.key
 ui.listeners.mouse

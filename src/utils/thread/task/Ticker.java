@@ -3,7 +3,7 @@ package utils.thread.task;
 
 import tlist.TList;
 
-public class Ticker implements Task {
+public class Ticker extends Task {
 
     private long last;
     private long lastSec;

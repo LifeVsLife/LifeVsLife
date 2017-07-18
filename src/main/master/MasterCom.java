@@ -5,21 +5,31 @@ import lnet.box.*;
 
 import utils.thread.TThread;
 
-import main.master.task.ComTask;
+import tnet.communication.TCom;
+
+import main.master.task.ComReadTask;
+import main.master.task.ComWriteTask;
 
 public abstract class MasterCom
 {
     /**
-     * The Thread that iterates read() and write()
+     * The Thread that iterates read()
      */
-    private TThread serverThread;
+    protected TThread readThread;
 
-    protected ComTask comTask;
+    /**
+     * The Thread that iterates write()
+     */
+    protected TThread writeThread;
+
+    protected ComReadTask comReadTask;
+
+    protected ComWriteTask comWriteTask;
 
      /**
       * The streams that you can read from what is recieved
       */
-    protected BoxLink recieve;
+    protected BoxLink recieved;
     /**
      * The streams that you write to to send
      */
@@ -36,28 +46,62 @@ public abstract class MasterCom
 
     public MasterCom()
     {
-        init();
+
     }
 
-    public void init()
+    public void init(TCom com)
     {
-        serverThread = new TThread();
-
-        recieve = new BoxLink();
+        recieved = new BoxLink();
         send = new BoxLink();
-        // in = recieve.getInBox();
-        // out = send.getOutBox();
-        serverThread.setTask(comTask);
+
+        comReadTask = new ComReadTask(
+            com,
+            recieved.getOutBox()
+        );
+
+        comWriteTask = new ComWriteTask(
+            com,
+            send.getInBox()
+        );
+
+        readThread = new TThread("ReadThread");
+        writeThread = new TThread("WriteThread");
+
+        readThread.addTask(comReadTask);
+        writeThread.addTask(comWriteTask);
+
+    }
+
+    public void start()
+    {
+        readThread.startThread();
+        writeThread.startThread();
+    }
+
+    public void stop()
+    {
+        writeThread.interrupt();
+        readThread.interrupt();
+        try {
+            writeThread.join();
+            readThread.join();
+        }
+        catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        recieved.close();
+        send.close();
     }
 
     public InBox getInBox()
     {
-        return recieve.getInBox();
+        return recieved.getInBox();
     }
 
     public OutBox getOutBox()
     {
-        return recieve.getOutBox();
+        return send.getOutBox();
     }
 
 }
