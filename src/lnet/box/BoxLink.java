@@ -23,8 +23,6 @@ public class BoxLink
 
     public BoxLink()
     {
-
-
         try {
             o = new PipedOutputStream();
             i = new PipedInputStream(o);
@@ -33,8 +31,8 @@ public class BoxLink
             b = new ObjectInputStream(i);
 
 
-            outBox = new OutBox(a, i, o);
             inBox = new InBox(b);
+            outBox = new OutBox(a, inBox);
         }
         catch (IOException e) {
             System.out.println("[ERROR] While creating a BoxLink");

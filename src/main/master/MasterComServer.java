@@ -21,7 +21,7 @@ public class MasterComServer extends MasterCom
      */
     protected TServer server;
 
-    protected TThread acceptThread;
+    // protected TThread acceptThread;
 
     protected AcceptTask acceptTask;
 
@@ -33,9 +33,9 @@ public class MasterComServer extends MasterCom
 
         acceptTask = new AcceptTask(server);
 
-        acceptThread = new TThread("AcceptThread");
+        // acceptThread = new TThread("AcceptThread");
 
-        acceptThread.addTask(acceptTask);
+        comThread.addTask(acceptTask);
     }
 
     public void open(int port)
@@ -53,7 +53,7 @@ public class MasterComServer extends MasterCom
     public void start()
     {
         super.start();
-        acceptThread.startThread();
+        // acceptThread.startThread();
     }
 
     public void close()
@@ -73,6 +73,7 @@ public class MasterComServer extends MasterCom
         MasterComServer s = new MasterComServer();
         s.open(8345);
         s.start();
+        s.server.setWriteReadObjectsToAll(true);
 
         //System.out.println("gonna send");
         s.getOutBox().write("My name is Tim");
@@ -97,7 +98,10 @@ public class MasterComServer extends MasterCom
         // System.out.println("end");
         while (true) {
             //System.out.println(s.readThread.isAlive());
-            //System.out.println(s.getInBox().<TNetData<String>>read().getData());
+            // TNetData<String> data = s.getInBox().<TNetData<String>>read();
+            // if (data != null)
+            //     System.out.println(data.getData());
+            System.out.println(s.getInBox().<TNetData<String>>waitRead().getData());
         }
         //s.thread.stopThread();
     }

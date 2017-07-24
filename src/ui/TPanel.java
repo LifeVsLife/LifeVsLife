@@ -19,14 +19,14 @@ public class TPanel extends JPanel {
     public void repaint()
     {
         super.repaint();
-        System.out.println("repaint");
+        //System.out.println("repaint");
     }
 
     @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        System.out.println("paintComponent");
+        //System.out.println("paintComponent");
     }
 
     @Override
@@ -34,7 +34,7 @@ public class TPanel extends JPanel {
     {
         super.paint(g);
         //System.out.println(getHeight());
-        System.out.println("paint");
+        //System.out.println("paint");
     }
 
 }

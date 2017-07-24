@@ -1,5 +1,5 @@
 
-package logic.game;
+package logic.game.map;
 
 // author:   Marco Kist
 // date:     08.05.17

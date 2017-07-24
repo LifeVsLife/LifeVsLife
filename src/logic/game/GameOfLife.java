@@ -5,6 +5,8 @@
 package logic.game;
 
 import lnet.box.InBox;
+import logic.game.map.*;
+import logic.game.event.*;
 
 import java.io.ObjectInputStream;
 //import java.io.IOException;
@@ -22,9 +24,9 @@ public class GameOfLife
     private int activePlayer = -1;
 
 
-    public GameOfLife()
+    public GameOfLife(int x, int y)
     {
-        init(new Map(10,10));
+        init(new Map(x, y));
     }
 
     public GameOfLife(Map map)
@@ -38,12 +40,18 @@ public class GameOfLife
         controller = new MapController(map);
     }
 
+    public void dealWith(GameEvent e)
+    {
+
+    }
+
     public boolean doSinglePlayerMove()
     {
         PlayerMove move = null;
         try {
             move = in.<PlayerMove>read();
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
 

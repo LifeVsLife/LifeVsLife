@@ -53,7 +53,7 @@ public class MasterComClient extends MasterCom
         disconnect();
     }
 
-    public void sleep(int ms)
+    private void sleep(int ms)
     {
         try {
             Thread.sleep(ms);
@@ -84,7 +84,7 @@ public class MasterComClient extends MasterCom
         c.getOutBox().write("4th MESSAGE");
         int i = 0;
         while (true) {
-            c.getOutBox().write(i++ + "th MESSAGE");
+            //c.getOutBox().write(i++ + "th MESSAGE");
             c.sleep(10);
         }
     }

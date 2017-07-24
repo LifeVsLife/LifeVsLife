@@ -10,27 +10,28 @@ public class OutBox
 {
 
     private final ObjectOutputStream stream;
-    private final PipedInputStream in;
-    private final PipedOutputStream master;
+    private final InBox in;
 
-    OutBox(ObjectOutputStream stream, PipedInputStream in, PipedOutputStream master)
+    OutBox(ObjectOutputStream stream, InBox in)
     {
         this.stream = stream;
         this.in = in;
-        this.master = master;
     }
 
     @SuppressWarnings("unchecked")
     public <D> void write(D obj)
     {
-            try {
-                stream.writeObject(obj);
-                stream.flush();
+        try {
+            stream.writeObject(obj);
+            stream.flush();
+            synchronized (in) {
+                in.elements++;
             }
-            catch (IOException e) {
-                System.out.println("[ERROR] in catch OutBox.write()");
-                e.printStackTrace();
-            }
+        }
+        catch (IOException e) {
+            System.out.println("[ERROR] In catch OutBox.write()");
+            e.printStackTrace();
+        }
     }
 
 }

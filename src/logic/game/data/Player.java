@@ -1,5 +1,5 @@
 
-package logic.data;
+package logic.game.data;
 
 //author: Simone Stöckl
 //date: 08.05.2017

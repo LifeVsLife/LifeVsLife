@@ -1,9 +1,8 @@
-﻿
-package logic.game;
-
-//author: Moritz Höcker, Jonas Reichert, tiiim
+//author: Moritz Höcker, Jonas Reichert
 //date: 08.05.2017
 //ver: 0.0.1
+
+package logic.game.map;
 
 public class MapEvolutionRules
 {

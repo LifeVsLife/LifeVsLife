@@ -13,14 +13,18 @@ import main.master.task.ComWriteTask;
 public abstract class MasterCom
 {
     /**
-     * The Thread that iterates read()
+     * The Thread that writes and reads (when it is the server: also accepts clients)
      */
-    protected TThread readThread;
-
-    /**
-     * The Thread that iterates write()
-     */
-    protected TThread writeThread;
+    protected TThread comThread;
+    // /**
+    //  * The Thread that iterates read()
+    //  */
+    // protected TThread readThread;
+    //
+    // /**
+    //  * The Thread that iterates write()
+    //  */
+    // protected TThread writeThread;
 
     protected ComReadTask comReadTask;
 
@@ -34,15 +38,6 @@ public abstract class MasterCom
      * The streams that you write to to send
      */
     protected BoxLink send;
-
-    // /**
-    //  * The stream with the objects recieved from the clients
-    //  */
-    // public InBox in;
-    // /**
-    //  * The stream to write objects to that shall be send
-    //  */
-    // public OutBox out;
 
     public MasterCom()
     {
@@ -64,27 +59,31 @@ public abstract class MasterCom
             send.getInBox()
         );
 
-        readThread = new TThread("ReadThread");
-        writeThread = new TThread("WriteThread");
+        comThread = new TThread("ComThread");
+        // readThread = new TThread("ReadThread");
+        // writeThread = new TThread("WriteThread");
 
-        readThread.addTask(comReadTask);
-        writeThread.addTask(comWriteTask);
-
+        comThread.addTask(comReadTask);
+        comThread.addTask(comWriteTask);
     }
 
     public void start()
     {
-        readThread.startThread();
-        writeThread.startThread();
+        comThread.startThread();
+        // readThread.startThread();
+        // writeThread.startThread();
     }
 
     public void stop()
     {
-        writeThread.interrupt();
-        readThread.interrupt();
+        comThread.interrupt();
+        // writeThread.interrupt();
+        // readThread.interrupt();
+        //
         try {
-            writeThread.join();
-            readThread.join();
+            comThread.join();
+            // writeThread.join();
+            // readThread.join();
         }
         catch (InterruptedException e) {
             e.printStackTrace();
@@ -94,11 +93,21 @@ public abstract class MasterCom
         send.close();
     }
 
+    /**
+     * Use this InBox to read what the client recieves from the Server
+     *
+     * @return The InBox to read from
+     */
     public InBox getInBox()
     {
         return recieved.getInBox();
     }
 
+    /**
+     * Use this OutBox to write data that shall be sent to the Server
+     *
+     * @return The OutBox to write to
+     */
     public OutBox getOutBox()
     {
         return send.getOutBox();

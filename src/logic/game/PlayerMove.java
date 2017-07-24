@@ -1,6 +1,8 @@
 
 package logic.game;
 
+import logic.game.map.Cell;
+
 public class PlayerMove
 {
     private int playerId;

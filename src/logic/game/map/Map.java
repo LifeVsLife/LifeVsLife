@@ -2,7 +2,7 @@
 //date: 08.05.17
 //version: 0.0.3
 
-package logic.game;
+package logic.game.map;
 
 import java.io.Serializable;
 

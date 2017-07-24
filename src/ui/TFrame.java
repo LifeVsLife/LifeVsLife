@@ -44,7 +44,7 @@ public class TFrame extends JFrame
 
 
 
-    public static void main(String[] args)
+    public static void main2(String[] args)
     {
         TFrame t = new TFrame();
         TPanel l = new LPanel();
@@ -54,7 +54,7 @@ public class TFrame extends JFrame
         t.setVisible(true);
     }
 
-    public static void main2(String[] args)
+    public static void main(String[] args)
     {
         TFrame t = new TFrame();
         //t.createBufferStrategy(2);
