@@ -1,4 +1,4 @@
-﻿//author: Moritz Höcker, Jonas Reichert, tiim
+//author: Moritz Höcker, Jonas Reichert, tiim
 //date: 08.05.2017
 //ver: 0.0.1
 
