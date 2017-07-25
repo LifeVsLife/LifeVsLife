@@ -6,7 +6,7 @@ package logic.game.map;
 
 public class MapEvolutionRules
 {
-    
+
     MapController con;
     Map map;
     int feld2D [][];
@@ -46,7 +46,7 @@ public class MapEvolutionRules
                 {
                     if(playercells(i,k)<2 ^ playercells(i,k)>3)
                     {
-                        feld2D [i][k] = null;
+                        feld2D[i][k] = null;
                         if(playercells(i,k)<2)
                         {
                             for(int m = 0; m < 4; m++)
@@ -56,7 +56,7 @@ public class MapEvolutionRules
                                    if(vergleichen(i,k)==false)
                                    {
                                       feld2D [i][k] = m;
-                                   } 
+                                   }
                                 }
                             }
                         }
@@ -111,7 +111,7 @@ public class MapEvolutionRules
         {
             boolean j = false;
             if(cellsId(x,y,k)>playercells(x,y)+1)
-            { 
+            {
                 for(int z = 0; z<4;z++)
                 {
                     if(cellsId(x,y,k)==cellsId(x,y,z))

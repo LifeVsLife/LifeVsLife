@@ -1,5 +1,5 @@
 
-package resources;
+package resources.image;
 
 import enums.PlayerColor;
 
@@ -9,7 +9,8 @@ import utils.image.GrayTinter;
 import utils.image.ImageLoader;
 import utils.image.ShowImage;
 
-public class ImageResources {
+public class ImageResources
+{
 
     public static BufferedImage[] cells;
 

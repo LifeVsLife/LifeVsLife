@@ -4,6 +4,8 @@ package resources;
 import main.Main;
 
 import java.io.InputStream;
+
+import resources.image.ImageResources;
 import utils.URLAppender;
 
 public class Resources

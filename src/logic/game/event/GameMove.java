@@ -29,6 +29,7 @@ public class GameMove extends GameEvent
         this.y = y;
 
         return this;
+
     }
 
 }
