@@ -21,6 +21,14 @@ public class SoundResources
             System.out.println(audio);
             c.open(audio);
             c.start();
+            try {
+                System.out.println("gonna sleep");
+                Thread.sleep(2000);
+                System.out.println("sleept");
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             c.close();
         }
         catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -31,7 +39,7 @@ public class SoundResources
 
     public static void main(String[] args)
     {
-        new SoundResources();
+        SoundResources r = new SoundResources();
     }
 
 }
