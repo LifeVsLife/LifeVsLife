@@ -14,7 +14,7 @@ public class MapEvolutionRules
     public MapEvolutionRules(MapController n)
     {
         con = n;
-        this.map = con.map;
+        map = con.getMap();
         x=map.getX();
         y=map.getY();
         feld2D = new int [x][y] ;
@@ -27,9 +27,9 @@ public class MapEvolutionRules
         {
             for(int k = 0; k<y;k++)
             {
-                if(map.cell[i][k] == null) //tote Zelle
+                if(map.getCell(i,k) == null) //tote Zelle
                 {
-                    feld2D[i][k] = null;
+                    feld2D[i][k] = -1;
                     int speicher [] = con.getPlayerAliveCellsAround(i,k);
                     for (int l = 0; l > 4; l++)
                     {
@@ -46,7 +46,7 @@ public class MapEvolutionRules
                 {
                     if(playercells(i,k)<2 ^ playercells(i,k)>3)
                     {
-                        feld2D[i][k] = null;
+                        feld2D[i][k] = -1;
                         if(playercells(i,k)<2)
                         {
                             for(int m = 0; m < 4; m++)
@@ -63,7 +63,7 @@ public class MapEvolutionRules
                     }
                     else
                     {
-                        überpruefen(i,k);//falls sie nicht tot ist und nicht stirbt...überprüfen
+                        ueberpruefen(i,k);//falls sie nicht tot ist und nicht stirbt...überpruefen
                     }
                 }
             }
@@ -73,7 +73,7 @@ public class MapEvolutionRules
 
     public int playercells(int x, int y)
     {
-        return con.getPlayerAliveCellsAround(x,y)[map.cell[x][y].getPlayerId()];
+        return con.getPlayerAliveCellsAround(x,y)[map.getCell(x,y).getPlayerId()];
     }
 
     public int cellsId(int x, int y, int id)
@@ -105,7 +105,7 @@ public class MapEvolutionRules
         return j;
     }
 
-    public void überpruefen(int x, int y)//schaut ob Gegner mehr Zellen hat als selbst
+    public void ueberpruefen(int x, int y)//schaut ob Gegner mehr Zellen hat als selbst
     {
         for(int k=0; k<4; k++)
         {
@@ -132,7 +132,7 @@ public class MapEvolutionRules
         {
             for( int c = 0; c < y; c++)
             {
-                map.cells[i][c] = new Cell(feld2D[i][c]);
+                map.setCell(i,c,new Cell(feld2D[i][c]));
             }
         }
     }
