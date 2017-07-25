@@ -7,11 +7,11 @@ package logic.game.map;
 public class MapEvolutionRules
 {
     
-     MapController con;
+    MapController con;
     Map map;
     int feld2D [][];
     int x,y, maxPlayer;
-    public alle_sklar(MapController n)
+    public MapEvolutionRules(MapController n)
     {
         con = n;
         this.map = con.map;
