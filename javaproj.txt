@@ -4,7 +4,7 @@ DOC=$(pwd)/doc/
 RES=$(pwd)/res/
 LIB=$(pwd)/lib/
 JAR=$(pwd)/jar/
-CP=$(pwd)/.classpath_win
-CPSH=$(pwd)/.classpath_sh_win
+CP=$(pwd)/.classpath
+CPSH=$(pwd)/.classpath_sh
 PROJ=$(pwd)
 
