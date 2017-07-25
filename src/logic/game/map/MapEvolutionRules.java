@@ -63,7 +63,7 @@ public class MapEvolutionRules
                     }
                     else
                     {
-                        überprüfen(i,k);//falls sie nicht tot ist und nicht stirbt...überprüfen
+                        überpruefen(i,k);//falls sie nicht tot ist und nicht stirbt...überprüfen
                     }
                 }
             }
@@ -105,7 +105,7 @@ public class MapEvolutionRules
         return j;
     }
 
-    public void überprüfen(int x, int y)//schaut ob Gegner mehr Zellen hat als selbst
+    public void überpruefen(int x, int y)//schaut ob Gegner mehr Zellen hat als selbst
     {
         for(int k=0; k<4; k++)
         {
