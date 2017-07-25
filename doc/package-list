@@ -1,11 +1,16 @@
 enums
 lnet.box
-logic.data
 logic.game
+logic.game.data
+logic.game.event
+logic.game.map
 main
 main.master
 main.master.task
+math.function
 resources
+resources.image
+resources.sound
 ui
 ui.listeners.key
 ui.listeners.mouse
