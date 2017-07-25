@@ -4,8 +4,5 @@ TestClass*.java
 *.ctxt
 *_back*
 _*
-#doc/
-#bin/
-#jar/
 *._java
-javaproj.txt
+javaproj*
