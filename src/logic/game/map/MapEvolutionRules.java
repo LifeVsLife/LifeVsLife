@@ -132,7 +132,7 @@ public class MapEvolutionRules
         {
             for( int c = 0; c < y; c++)
             {
-                map.setCell(i,c,new Cell(feld2D[i][c]));
+                map.setCell(i,c,new Cell(feld2D[i][c])); // swapt alles
             }
         }
     }
