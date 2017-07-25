@@ -102,4 +102,9 @@ public class MapController
         return surroundingPlayer;
     }
 
+    public Map getMap()
+    {
+        return map;
+    }
+
 }
